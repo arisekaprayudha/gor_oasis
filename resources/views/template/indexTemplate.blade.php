@@ -2,7 +2,9 @@
     <thead>
     <tr>
         <th>Code</th>
-        <th>Venue Name</th>
+        <th>Subcode</th>
+        <th>Unit Kerja ID</th>
+        <th>Index</th>
     </tr>
     </thead>
 </table> 

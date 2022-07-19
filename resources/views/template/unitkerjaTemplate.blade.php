@@ -2,7 +2,8 @@
     <thead>
     <tr>
         <th>Code</th>
-        <th>Survey Name</th>
+        <th>Subcode</th>
+        <th>Unit kerja</th>
     </tr>
     </thead>
 </table> 

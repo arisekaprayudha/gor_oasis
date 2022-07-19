@@ -121,7 +121,7 @@
         <form action="#" method="post" enctype="multipart/form-data">
             <div class="modal-body">
                 @csrf
-                <p><strong>Templates can be downloaded <a href="#">here</a></strong></p>
+                <p><strong>Templates can be downloaded <a href="{{route('index.template')}}">here</a></strong></p>
                 <div class="form-group">
                     <label for="file">File :</label>
                     <input type="file" name="file" class="form-control" required="required">
