@@ -53,31 +53,6 @@ Route::get('/search', [SearchController::class, 'create']);
     Route::get('/arsip/download/{file}', [ArsipController::class, 'download'])->name('arsip-download');
 
 
-    Route::get('/index', [IndexController::class,'index']);
-    Route::post('/index', [IndexController::class,'store']);
-    Route::get('/index/create', [IndexController::class, 'create']);
-    Route::get('/index/{id}', [IndexController::class, 'show']);
-    Route::get('/index/{id}/edit', [IndexController::class,'edit']);
-    Route::put('/index/{id}', [IndexController::class, 'update']);
-    Route::delete('/index/{id}', [IndexController::class, 'destroy']);
-    Route::get('/exportIndex',[IndexController::class,'indexExport']);
-    Route::post('/importIndex',[IndexController::class,'indexImport'])->name('index.import');
-    Route::get('/templateIndex',[IndexController::class,'templateIndex'])->name('index.template');
-
-    Route::get('/unitkerja', [UnitKerjaController::class,'index']);
-    Route::post('/unitkerja', [UnitKerjaController::class,'store']);
-    Route::get('/unitkerja/create', [UnitKerjaController::class, 'create']);
-    Route::get('/unitkerja/{id}', [UnitKerjaController::class, 'show']);
-    Route::get('/unitkerja/{id}/edit', [UnitKerjaController::class,'edit']);
-    Route::put('/unitkerja/{id}', [UnitKerjaController::class, 'update']);
-    Route::delete('/unitkerja/{id}', [UnitKerjaController::class, 'destroy']);
-    Route::get('/exportUnitkerja',[UnitKerjaController::class,'unitkerjaExport']);
-    Route::post('/importUnitkerja',[UnitKerjaController::class,'unitkerjaImport'])->name('unitkerja.import');
-    Route::get('/templateUnitkerja',[UnitKerjaController::class,'templateUnitkerja'])->name('unitkerja.template');
-
-
-
-
 //change password
 Route::put('/user/changePassword', [UserController::class, 'updatePassword'])->name('user.changePassword');
 
@@ -112,6 +87,32 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/user/{id}/edit', [UserController::class, 'edit']);
 
     Route::put('/user/{id}', [UserController::class, 'update']);
+
+    
+    Route::get('/index', [IndexController::class,'index']);
+    Route::post('/index', [IndexController::class,'store']);
+    Route::get('/index/create', [IndexController::class, 'create']);
+    Route::get('/index/{id}', [IndexController::class, 'show']);
+    Route::get('/index/{id}/edit', [IndexController::class,'edit']);
+    Route::put('/index/{id}', [IndexController::class, 'update']);
+    Route::delete('/index/{id}', [IndexController::class, 'destroy']);
+    Route::get('/exportIndex',[IndexController::class,'indexExport']);
+    Route::post('/importIndex',[IndexController::class,'indexImport'])->name('index.import');
+    Route::get('/templateIndex',[IndexController::class,'templateIndex'])->name('index.template');
+
+    Route::get('/unitkerja', [UnitKerjaController::class,'index']);
+    Route::post('/unitkerja', [UnitKerjaController::class,'store']);
+    Route::get('/unitkerja/create', [UnitKerjaController::class, 'create']);
+    Route::get('/unitkerja/{id}', [UnitKerjaController::class, 'show']);
+    Route::get('/unitkerja/{id}/edit', [UnitKerjaController::class,'edit']);
+    Route::put('/unitkerja/{id}', [UnitKerjaController::class, 'update']);
+    Route::delete('/unitkerja/{id}', [UnitKerjaController::class, 'destroy']);
+    Route::get('/exportUnitkerja',[UnitKerjaController::class,'unitkerjaExport']);
+    Route::post('/importUnitkerja',[UnitKerjaController::class,'unitkerjaImport'])->name('unitkerja.import');
+    Route::get('/templateUnitkerja',[UnitKerjaController::class,'templateUnitkerja'])->name('unitkerja.template');
+
+    //dropdown
+    Route::post('api/fetch-index', [ArsipController::class, 'getIndex']);
    
     });
 

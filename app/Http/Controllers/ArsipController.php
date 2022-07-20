@@ -59,12 +59,30 @@ class ArsipController extends Controller
         $request->validate([
 
             //'file'=> 'required|max:10000',
+            'index_id' => 'required',
+            'unitkerja_id' => 'required',
             'jumlah' => 'required',
             'tanggal' => 'required',
+            'kondisi' => 'required',
+            'jenis' => 'required',
+            'media' => 'required',
+            'tingkatpengembangan' => 'required',
+            'lokasi' => 'required',
+            'retensi' => 'required',
+            'uraian' => 'required',
+            'akhirRetensi' => 'required',
 
         ], [
-            'jumlah.required' => 'The name jumlah already registered',
-            'tanggal.required' => 'The name tanggal field is required',
+            'index_id.required' => 'Kolom Index wajib diisi',
+            'unitkerja_id.required' => 'Kolom Unit Kerja wajib diisi',
+            'jumlah.required' => 'Kolom jumlah wajib diisi',
+            'tanggal.required' => 'Kolom Tanggal wajib diisi',
+            'kondisi.required' => 'Kolom Kondisi wajib diisi',
+            'jenis.required' => 'Kolom Jenis wajib diisi',
+            'tingkatpengembangan.required' => 'Kolom Tingkat Pengembangan wajib diisi',
+            'lokasi.required' => 'Kolom Lokasi wajib diisi',
+            'retensi.required' => 'Kolom Retensi wajib diisi',
+            'media.required' => 'Kolom Media wajib diisi',
 
         ]);
 
@@ -81,7 +99,7 @@ class ArsipController extends Controller
         //$arsip->index_id = json_encode($request->index_id);
         $arsip->code = IdGenerator::generate($code_arsip);
         $arsip->unitkerja_id = $request->unitkerja_id;
-        $arsip->klasifikasi = $request->klasifikasi;
+        //$arsip->klasifikasi = $request->klasifikasi;
         $arsip->kondisi = $request->kondisi;
         $arsip->jenis = $request->jenis;
         $arsip->media = $request->media;
@@ -181,5 +199,12 @@ class ArsipController extends Controller
     public function download($file)
     {
             return response()->download(public_path('Arsip/'.$file));
+    }
+
+    public function getIndex(Request $request)
+    {
+
+        $data['indices'] = Index::where("unitkerja_id",$request->unitkerja_id)->get(["id","index"]);
+        return response()->json($data);
     }
 }

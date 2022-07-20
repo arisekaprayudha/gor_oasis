@@ -52,6 +52,18 @@ class UnitKerjaController extends Controller
             'prefix' => 'UNT-'
         ];
 
+        $request->validate([
+
+            'unitkerja' => 'required',
+
+
+        ], [
+           
+            'unitkerja.required' => 'Kolom Unit Kerja wajib diisi',
+
+        ]);
+
+
         $code = IdGenerator::generate($code_unitkerja);
         $request->request->add(['code' => $code]);
 

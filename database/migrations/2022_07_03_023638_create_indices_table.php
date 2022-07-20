@@ -18,7 +18,7 @@ class CreateIndicesTable extends Migration
             $table->string('code')->unique();
             $table->string('subcode')->unique();
             $table->unsignedInteger('unitkerja_id');
-            $table->string('index')->unique();
+            $table->string('index');
             $table->timestamps();
         });
 

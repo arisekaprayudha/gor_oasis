@@ -118,7 +118,7 @@
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
           <h4 class="modal-title" id="myModalLabel">Import Index</h4>
         </div>
-        <form action="#" method="post" enctype="multipart/form-data">
+        <form action="{{route('index.import')}}" method="post" enctype="multipart/form-data">
             <div class="modal-body">
                 @csrf
                 <p><strong>Templates can be downloaded <a href="{{route('index.template')}}">here</a></strong></p>

@@ -44,7 +44,7 @@
                 </div>
             </div> 
 
-            <div class="form-group row mt-2 {{$errors->has('unitkerja') ? ' has-error' : ' '}}">
+            <div class="form-group row mt-2 {{$errors->has('unitkerja_id') ? ' has-error' : ' '}}">
                 <label class="col-sm-3 control-label">Unit Kerja :</label>
                 <div class="col-sm-8">
                     <select class="form-control select2" value="{{ old('unitkerja_id') }}"  id="category_id" name="unitkerja_id" placeholder="Select Unit Kerja" style="width: 100%;">
@@ -53,6 +53,10 @@
                         <option value="{{ $item->id }}" {{old('unitkerja_id') == $item->id ? "selected" : ""}}>{{ $item->unitkerja }}</option>
                         @endforeach
                     </select>
+                    @if ($errors->has('unitkerja_id'))
+                    <span class="help-block">
+                    <strong>{{ $errors->first('unitkerja_id') }}</strong>
+                    @endif
                 </div>
             </div>
 

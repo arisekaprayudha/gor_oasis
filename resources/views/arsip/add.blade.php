@@ -33,17 +33,23 @@
                 </div>
             </div>  --}}
 
-            <div class="form-group row mt-2 {{$errors->has('unitkerja') ? ' has-error' : ' '}}">
+            @if(auth()->user()->role()->where('nameRole', '=', 'Admin')->exists())
+            <div class="form-group row mt-2 {{$errors->has('unitkerja_id') ? ' has-error' : ' '}}">
                 <label class="col-sm-3 control-label">Unit Kerja :</label>
                 <div class="col-sm-8">
-                    <select class="form-control select2" value="{{ old('unitkerja_id') }}"  id="category_id" name="unitkerja_id" placeholder="Select Unit Kerja" style="width: 100%;">
+                    <select class="form-control select2" value="{{ old('unitkerja_id') }}"  id="unitkerja_id" name="unitkerja_id" placeholder="Select Unit Kerja" style="width: 100%;">
                         <option value="">Select Unit Kerja</option>
                         @foreach($unitkerja as $item)
                         <option value="{{ $item->id }}" {{old('unitkerja_id') == $item->id ? "selected" : ""}}>{{ $item->unitkerja }}</option>
                         @endforeach
                     </select>
                 </div>
+                @if ($errors->has('unit_kerja_id'))
+                <span class="help-block">
+                <strong>{{ $errors->first('unitkerja_id') }}</strong>
+                @endif
             </div>
+            @endif
 
             <div class="form-group row mt-2 {{$errors->has('jenis') ? ' has-error' : ' '}}">
                 <label class="col-sm-3 control-label">Jenis :</label>
@@ -79,6 +85,14 @@
                 </div>
             </div>
 
+            {{-- <div class="form-group row mt-2 {{$errors->has('unitkerja') ? ' has-error' : ' '}}">
+                <label class="col-sm-3 control-label">Index :</label>
+                <div class="col-sm-8">
+                    <select class="form-control select2" id="index_id" name="index_id" placeholder="Index" style="width: 100%;">
+                    </select>
+                </div>
+            </div> --}}
+
             <div class="form-group row mt-2 {{$errors->has('index') ? ' has-error' : ' '}}">
                 <label class="col-sm-3 control-label">Index :</label>
                 <div class="col-sm-8">
@@ -86,24 +100,20 @@
                     {{-- <label><input type="checkbox" name="index_id[]" value="{{ $item->index }}" class="minimal">{{ $item->index }}</label> --}}
                     {{-- <input type="text" name="index" value="{{ old('index') }}"  class="form-control" id="nameRoom" placeholder="Index"> --}}
                     {{-- @endforeach --}}
-                        <div class = "radio">
                         @if(auth()->user()->role()->where('nameRole', '=', 'Admin')->exists())
-                        @foreach($index as $item)
-                            <label class="radio-inline">
-                                <input type="radio" name="index" value="{{ $item->id }}"> {{ $item->index }}
-                                <input type="hidden"name="klasifikasi"value="{{ $item->subcode }}">
-                            </label><br>
-                        @endforeach
+                        <select class="form-control select2" id="index_id" name="index_id" placeholder="Index" style="width: 100%;">
+                        </select>
                         @endif
                         @if(auth()->user()->role()->where('nameRole', '=', 'User')->exists())
+                        <div class = "radio">
                         @foreach($data_index as $item)
                             <label class="radio-inline">
                                 <input type="radio" name="index" value="{{ $item->id }}"> {{ $item->index }}
                                 <input type="hidden"name="klasifikasi"value="{{ $item->subcode }}">
                             </label><br>
                         @endforeach
-                        @endif
                         </div>
+                        @endif
                     @if ($errors->has('index'))
                 <span class="help-block">
                 <strong>{{ $errors->first('Index') }}</strong>
@@ -176,7 +186,7 @@
             <div class="form-group row mt-2 {{$errors->has('lokasi') ? ' has-error' : ' '}}">
                 <label class="col-sm-3 control-label">Lokasi :</label>
                 <div class="col-sm-8">
-                    <input type="text" name="ruangan" value="{{ old('lokasi') }}"  class="form-control" id="lokasi" placeholder="Lokasi">
+                    <input type="text" name="lokasi" value="{{ old('lokasi') }}"  class="form-control" id="lokasi" placeholder="Lokasi">
                 @if ($errors->has('lokasi'))
                 <span class="help-block">
                 <strong>{{ $errors->first('lokasi') }}</strong>
@@ -211,6 +221,10 @@
                 <label class="col-sm-3 control-label">Uraian : </label>
                 <div class="col-sm-8">
                 <textarea class="form-control" name="uraian" rows="3" placeholder="Uraian...">{{ old('uraian') }}</textarea>
+                @if ($errors->has('uraian'))
+                <span class="help-block">
+                <strong>{{ $errors->first('uraian') }}</strong>
+                @endif
                 </div>
             </div>
 
@@ -218,6 +232,10 @@
                 <label class="col-sm-3 control-label">Jumlah : </label>
                 <div class="col-sm-8">
                     <input type="number" class="form-control" name="jumlah" placeholder="Jumlah">
+                    @if ($errors->has('jumlah'))
+                    <span class="help-block">
+                    <strong>{{ $errors->first('jumlah') }}</strong>
+                    @endif
                 </div> 
             </div>
 
@@ -225,6 +243,10 @@
                 <label class="col-sm-3 control-label">Retensi : </label>
                 <div class="col-sm-8">
                     <input type="number" class="form-control" name="retensi" placeholder="Retensi">
+                    @if ($errors->has('retensi'))
+                    <span class="help-block">
+                    <strong>{{ $errors->first('retensi') }}</strong>
+                    @endif
                 </div> 
             </div>
 
@@ -308,6 +330,32 @@
       });
 
 </script> 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#unitkerja_id').on('change', function () {
+            var idUnitkerja = this.value;
+            $("#index_id").html('');
+            $.ajax({
+                url: "{{url('api/fetch-index')}}",
+                type: "POST",
+                data: {
+                    unitkerja_id: idUnitkerja,
+                    _token: '{{csrf_token()}}'
+                },
+                dataType: 'json',
+                success: function (result) {
+                    $('#index_id').html('<option value="">Select Index</option>');
+                    $.each(result.indices, function (key, value) {
+                        $("#index_id").append('<option value="' + value.id + '">' + value.index + '</option>');
+                    });
+                    //$('#lesson_id').html('<option value="">Select Lesson</option>'); 
+                }
+            });
+            });
+    });
+</script>
 
 
 @endsection

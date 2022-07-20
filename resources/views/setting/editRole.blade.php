@@ -11,14 +11,6 @@
     <form class="form-horizontal" action="/role/{{$role->id}}" method="post">
         @method('PUT')
         @csrf
-        {{--<div class="box-body">
-            <div class="form-group row mt-2">
-                <label class="col-sm-3 control-label">Role :</label>
-                <div class="col-sm-8">
-                    <input type="text" name="role_id" value="{{ $role->nameRole }}" class="form-control" id="role_id" placeholder="Role">
-                </div>
-            </div>
-        </div>--}}
 
         <div class="form-group row mt-2">
             <label class="col-sm-3 control-label">Role :</label>

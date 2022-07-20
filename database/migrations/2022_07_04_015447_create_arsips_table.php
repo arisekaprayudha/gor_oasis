@@ -23,7 +23,7 @@ return new class extends Migration
             $table->unsignedInteger('index_id')->nullable();
             //$table->json('index_id'); 
             $table->unsignedInteger('unitkerja_id');
-            $table->string('klasifikasi');
+            //$table->string('klasifikasi');
             $table->longText('uraian');
             $table->date('tanggal'); 
             $table->string('tingkatpengembangan'); 

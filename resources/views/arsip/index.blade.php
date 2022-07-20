@@ -22,6 +22,7 @@
             {{-- <button type="button" class="btn btn-primary btn-flat" data-toggle="modal" data-target="#provider">
                 create
             </button> --}}
+            @if(auth()->user()->role()->where('nameRole', '=', 'Admin')->exists())
             <a href="/arsip/create" class="btn btn-primary btn-flat">
                 create
             </a>
@@ -31,6 +32,7 @@
             <button type="button" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#upload">
                 Import
             </button>
+            @endif
             {{-- <a href="/categorytraining/create" class="btn btn-primary btn-flat">
                 create
             </a> --}}
@@ -57,14 +59,9 @@
             <tr>
                 <td class="text-center">{{ $loop->iteration }}</td>
                 <td>{{ $item->code }}</td>
-                <td>
-                    <?php
-                    $index = $item->index_id;
-                    $data_index = json_decode($index);
-                    echo implode(', ', $data_index);
-                    ?>
-                </td>
-                <td>{{ $item->klasifikasi }}</td>
+    
+                <td>{{ $item->index->index}}</td>
+                <td>{{ $item->index->subcode}}</td>
                 <td>{{ $item->unitKerja->unitkerja }}</td>
                 <td>{{ $item->tanggal }}</td>
                 <td>{{ $item->jumlah }}</td>
@@ -97,9 +94,9 @@
                     $index = $item->index_id;
                     $data_index = json_decode($index);
                     echo implode(', ', $data_index);
-                    ?>
+                    ?> 
                 </td>
-                <td>{{ $item->klasifikasi }}</td>
+                {{-- <td>{{ $item->klasifikasi }}</td> --}}
                 <td>{{ $item->unitKerja->unitkerja }}</td>
                 <td>{{ $item->tanggal }}</td>
                 <td>{{ $item->jumlah }}</td>
@@ -107,6 +104,7 @@
                     <a href="{{url('/arsip/'.$item->id)}} " class="btn btn-sm btn-success" >
                         <i class="fa fa-eye"></i> 
                     </a>
+                    @if(auth()->user()->role()->where('nameRole', '=', 'Admin')->exists())
                     <a href="{{url('/arsip/'.$item->id.'/edit')}}" class="btn btn-sm btn-primary">
                         <i class="fa fa-pencil"></i>
                     </a>
@@ -117,6 +115,7 @@
                             <i class="fa fa-trash"></i>
                         </button> 
                     </form>
+                    @endif
                 </td>
             </tr>
             @endforeach

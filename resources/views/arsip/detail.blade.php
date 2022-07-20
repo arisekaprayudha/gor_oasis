@@ -40,9 +40,9 @@
         </div>
 
         {{-- <a href="{{route('arsip-download',$arsip->file)}}" type="button" class="btn btn-primary btn-floating btn-sm"><i class="fas fa-download"></i></a> --}}
-        <a href="{{route('arsip-download',$arsip->file)}}" class="btn btn-sm btn-danger">
+        {{-- <a href="{{route('arsip-download',$arsip->file)}}" class="btn btn-sm btn-danger">
             <i class="fa fa-download"></i>
-        </a>
+        </a> --}}
 
         <br>
         

@@ -49,6 +49,21 @@ class IndexController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+
+            'index' => 'required',
+            'subcode' => 'required|unique',
+            'unitkerja_id' => 'required',
+
+        ], [
+            'index.required' => 'Kolom Index wajib diisi',
+            'subcode.unique' => 'Kolom Subcode harus unique',
+            'subcode.required' => 'Kolom Subcode wajib diisi',
+            'unitkerja_id.required' => 'Kolom Unit Kerja wajib diisi',
+
+        ]);
+
         //dd($request);
         $code_index = [
             'table' => 'indices',
@@ -74,7 +89,8 @@ class IndexController extends Controller
     public function show($id)
     {
         $index = Index::find($id);
-        return view('index.detail',compact('index'));
+        $unitkerja = UnitKerja::all();
+        return view('index.detail',compact('index','unitkerja'));
     }
 
     /**
@@ -86,7 +102,8 @@ class IndexController extends Controller
     public function edit($id)
     {
         $index = Index::findorfail($id);
-        return view('index.edit',compact('index'));
+        $unitkerja = UnitKerja::all();
+        return view('index.edit',compact('index','unitkerja'));
     }
 
     /**

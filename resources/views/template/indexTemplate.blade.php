@@ -2,8 +2,8 @@
     <thead>
     <tr>
         <th>Code</th>
-        <th>Subcode</th>
         <th>Unit Kerja ID</th>
+        <th>Subcode</th>
         <th>Index</th>
     </tr>
     </thead>
