@@ -32,4 +32,8 @@ class Arsip extends Model
     public function index(){
         return $this->belongsTo('App\Models\Index');
     }
+
+    public function pengajuaan(){
+        return $this->hasMany('App\Models\Pengajuaan');
+    }
 }

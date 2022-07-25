@@ -46,6 +46,10 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\UnitKerja');
     }
 
+    public function pengajuaan(){
+        return $this->belongsToMany('App\Models\Pengajuaan');
+    }
+
   
 
     /**

@@ -48,10 +48,14 @@
         
         <div class="pull-right">
             <div class="box-footer">
-                <a href="{{ url()->previous() }}" type="button" class="btn btn-default" data-dismiss="modal">Back</a>
-                @if(auth()->user()->role()->where('nameRole', '=', 'User')->exists())
-                <button type="submit" class="btn btn-primary">Request</button>
-                @endif
+                <form action="/arsip/{{ $arsip->id }}/store" method="post">
+                    @csrf
+                    @method('Post')
+                    @if(auth()->user()->role()->where('nameRole', '=', 'User')->exists())
+                    <button type="submit" class="btn btn-primary">Request</button>
+                    @endif
+                    <a href="{{ url()->previous() }}" type="button" class="btn btn-default" data-dismiss="modal">Back</a>
+                </form>
             </div>
         </div>
  

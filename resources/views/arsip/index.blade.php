@@ -89,13 +89,8 @@
             <tr>
                 <td class="text-center">{{ $loop->iteration }}</td>
                 <td>{{ $item->code }}</td>
-                <td>
-                    <?php
-                    $index = $item->index_id;
-                    $data_index = json_decode($index);
-                    echo implode(', ', $data_index);
-                    ?> 
-                </td>
+                <td>{{ $item->index->index}}</td>
+                <td>{{ $item->index->subcode}}</td>
                 {{-- <td>{{ $item->klasifikasi }}</td> --}}
                 <td>{{ $item->unitKerja->unitkerja }}</td>
                 <td>{{ $item->tanggal }}</td>

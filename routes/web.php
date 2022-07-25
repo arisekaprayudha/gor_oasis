@@ -1,5 +1,7 @@
 <?php
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\RequestController;
+use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\UnitKerjaController;
@@ -35,6 +37,15 @@ Route::view('/','dashboard');
 
 //home page tampilan pendaftaran training
 Route::get('/dashboard',[HomeController::class,'index'])->name('home');
+
+Route::get('/requestrecord', [RequestController::class,'index']);
+
+//store approval arsip
+Route::put('/arsip/{id}', [RequestController::class, 'update']);
+
+//detail pengajuan untuk user
+//Route::get('/registsubmission/{id}', [RegistController::class,'registShow']);
+Route::get('/detailrequest/{id}', [RequestController::class,'show']);
 
 Route::get('/search', [SearchController::class, 'create']);
 
@@ -111,8 +122,11 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::post('/importUnitkerja',[UnitKerjaController::class,'unitkerjaImport'])->name('unitkerja.import');
     Route::get('/templateUnitkerja',[UnitKerjaController::class,'templateUnitkerja'])->name('unitkerja.template');
 
-    //dropdown
+    //dropdowngetindex from unitkerja
     Route::post('api/fetch-index', [ArsipController::class, 'getIndex']);
+
+    //detail pengajuan untuk admin approver
+    Route::get('/requestsubmission/{request_id}', [RequestController::class,'edit']);
    
     });
 
