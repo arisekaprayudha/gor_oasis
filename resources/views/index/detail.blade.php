@@ -33,7 +33,7 @@
         </div>
 
         <div class="form-group row mt-2">
-            <label class="col-sm-3 control-label">Unit Kerja :</label>
+            <label class="col-sm-3 control-label"> :</label>
             <div class="col-sm-8">
             <input class="form-control select2" name="unitkerja" value="{{$index->unitkerja->unitkerja}}" style="width: 100%;" disabled>
             </div>

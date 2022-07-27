@@ -2,7 +2,7 @@
     <thead>
     <tr>
         <th>Code</th>
-        <th>Unit Kerja ID</th>
+        <th>Klasifikasi ID</th>
         <th>Subcode</th>
         <th>Index</th>
     </tr>

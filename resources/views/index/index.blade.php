@@ -45,7 +45,7 @@
                 <th>Kode</th>
                 <th>Sub Code / No Klasifikasi</th>
                 <th>Name Index</th>
-                <th>Unit Kerja</th>
+                <th>Klasifikasi</th>
                 <th class="text-center">Aksi</th>
             </tr> 
         </thead>
@@ -56,7 +56,7 @@
                 <td>{{ $item->code }}</td>
                 <td>{{ $item->subcode}}</td>
                 <td>{{ $item->index }}</td>
-                <td>{{ $item->unitkerja->unitkerja }}</td>
+                <td>{{ $item->klasifikasi->klasifikasi }}</td>
                 <td class="text-center" width="200px">
                     <a href="{{url('/index/'.$item->id)}} " class="btn btn-sm btn-success" >
                         <i class="fa fa-eye"></i> 

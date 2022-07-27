@@ -40,13 +40,47 @@
     </div>
 
     <div class="box-body table-responsive">
+        <p>Filter Arsip</p>
+        <div class="row">
+            <div class="col-md-4">
+                        <select class="form-control select2" id="filter-unitkerja">
+                            <option value="">Select Unit Kerja</option>
+                            @foreach($unitkerja as $item)
+                            <option value="{{ $item->id }}" {{old('unitkerja_id') == $item->id ? "selected" : ""}}>{{ $item->unitkerja }}</option>
+                            @endforeach
+                        </select>
+            </div>
+            <div class="col-md-4">
+                {{-- <div class="col-sm-8"> --}}
+                    <select class="form-control select2" id="filter-klasifikasi">
+                        <option value="">Select Index</option>
+                        @foreach($klasifikasi as $item)
+                        <option value="{{ $item->id }}" {{old('klasifikasi_id') == $item->id ? "selected" : ""}}>{{ $item->klasifikasi }}</option>
+                        @endforeach
+                    </select>
+                {{-- </div> --}}
+            </div>
+            <div class="col-md-4">
+                {{-- <div class="col-sm-8"> --}}
+                    <select class="form-control select2" id="filter-kondisi">
+                        <option value="">Kondisi</option>
+                        <option value="Dokumen" {{old('dokumen') == "dokumen" ? "selected" : ""}}>Dokumen</option>
+                        <option value="Surat Masuk" {{old('suratmasuk') == "suratmasuk" ? "selected" : ""}}>Surat Masuk</option>
+                        <option value="Surat Keluar" {{old('suratkeluar') == "suratkeluar" ? "selected" : ""}}>Surat Keluar</option>
+                        <option value="Nota Dinas" {{old('notadinas') == "notadinas" ? "selected" : ""}}>Surat Masuk</option>
+                    </select>
+                {{-- </div> --}}
+            </div>
+        </div>
+        <div class="divider"></div>
+
         <table id="table"  class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th class="text-center">No</th>
                 <th>Kode Pelaksanaan</th>
                 <th>Index</th>
-                <th>klasifikasi</th>
+                <th>Klasifikasi</th>
                 <th>Unit Kerja</th>
                 <th>Tanggal</th>
                 <th>Jumlah</th>
@@ -122,6 +156,11 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 <script type="text/javascript">
+
+    // Let klasifikasi = $("#filter-klasifikasi").val()
+    // ,jenis = $("#filter-jenis").val()
+    // ,unitkerja = $("#filter-unitkerja").val()
+
     $(document).ready(function () {
         $('#category_id').on('change', function () {
             var idCategory = this.value;
@@ -143,6 +182,14 @@
             });
         });
     });
+
+    // $(".filter").on('change',fuction(){
+    //     // console.log("filter")
+    //     klasifikasi = $("filter-klasifikasi").val()
+    //     unitkerja = $("filter-unitkerja").val()
+    //     jenis = $("jenis").val()
+    //     // console.log([klasifikasi, unitkerja, jenis])
+    // })
 </script>
 
 

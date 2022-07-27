@@ -33,7 +33,7 @@ class Arsip extends Model
         return $this->belongsTo('App\Models\Index');
     }
 
-    public function pengajuaan(){
-        return $this->hasMany('App\Models\Pengajuaan');
+    public function detailarsip(){
+        return $this->hasMany('App\Models\DetailArsip');
     }
 }

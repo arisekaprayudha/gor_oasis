@@ -18,15 +18,31 @@
     </div>
     @endif
 
-<form role="form" action="/lesson" method="post" enctype="multipart/form-data">
+<form role="form" action="#" method="post" enctype="multipart/form-data">
     @csrf
     <div class="box-body">
+
+        <div class="form-group row mt-2 {{$errors->has('unitkerja_id') ? ' has-error' : ' '}}">
+            <label class="col-sm-3 control-label">Unit Kerja :</label>
+            <div class="col-sm-8">
+                <select class="form-control select2" value="{{ old('unitkerja_id') }}"  id="unitkerja_id" name="unitkerja_id" placeholder="Select Unit Kerja" style="width: 100%;">
+                    <option value="">Select Unit Kerja</option>
+                    @foreach($unitkerja as $item)
+                    <option value="{{ $item->id }}" {{old('unitkerja_id') == $item->id ? "selected" : ""}}>{{ $item->unitkerja }}</option>
+                    @endforeach
+                </select>
+            </div>
+            @if ($errors->has('unitkerja_id'))
+            <span class="help-block">
+            <strong>{{ $errors->first('unitkerja_id') }}</strong>
+            @endif
+        </div>
 
         <div class="form-group row mt-2 {{$errors->has('jenis') ? ' has-error' : ' '}}">
             <label class="col-sm-3 control-label">Jenis :</label>
             <div class="col-sm-8">
-                <select class="form-control select2" id="kondisi" name="kondisi" placeholder="Kondisi" style="width: 100%;">
-                    <option value="">Kondisi</option>
+                <select class="form-control select2" id="jenis" name="jenis" placeholder="Jenis" style="width: 100%;">
+                    <option value="">Jenis</option>
                     <option value="Dokumen" {{old('dokumen') == "dokumen" ? "selected" : ""}}>Dokumen</option>
                     <option value="Surat Masuk" {{old('suratmasuk') == "suratmasuk" ? "selected" : ""}}>Surat Masuk</option>
                     <option value="Surat Keluar" {{old('suratkeluar') == "suratkeluar" ? "selected" : ""}}>Surat Keluar</option>

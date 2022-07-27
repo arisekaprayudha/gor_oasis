@@ -54,13 +54,13 @@ class IndexController extends Controller
 
             'index' => 'required',
             'subcode' => 'required|unique',
-            'unitkerja_id' => 'required',
+            'klasifikasi_id' => 'required',
 
         ], [
             'index.required' => 'Kolom Index wajib diisi',
             'subcode.unique' => 'Kolom Subcode harus unique',
             'subcode.required' => 'Kolom Subcode wajib diisi',
-            'unitkerja_id.required' => 'Kolom Unit Kerja wajib diisi',
+            'klasifikasi_id.required' => 'Kolom Unit Kerja wajib diisi',
 
         ]);
 

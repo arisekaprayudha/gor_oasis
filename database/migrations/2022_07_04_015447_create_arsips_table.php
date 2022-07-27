@@ -22,6 +22,7 @@ return new class extends Migration
             //$table->string('index');
             $table->unsignedInteger('index_id')->nullable();
             //$table->json('index_id'); 
+            $table->unsignedInteger('klasifikasi_id');
             $table->unsignedInteger('unitkerja_id');
             //$table->string('klasifikasi');
             $table->longText('uraian');
@@ -48,6 +49,7 @@ return new class extends Migration
         Schema::table('arsips', function(Blueprint $table){
             $table->foreign('index_id')->references('id')->on('indices')->onDelete('cascade')->unUpdate('cascade');
             $table->foreign('unitkerja_id')->references('id')->on('unit_kerjas')->onDelete('cascade')->unUpdate('cascade');
+            $table->foreign('klasifikasi_id')->references('id')->on('klasifikasis')->onDelete('cascade')->unUpdate('cascade');
             
         });
     }

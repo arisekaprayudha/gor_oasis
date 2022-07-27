@@ -48,7 +48,7 @@
 
                                             </div>
 
-                     <div class="input-group mb-3">
+                     {{-- <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
                                 <i class="fa fa-briefcase"></i>
@@ -62,7 +62,7 @@
                             <option value="">Keuangan</option>
                         </select>
 
-                                            </div>
+                                            </div> --}}
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">

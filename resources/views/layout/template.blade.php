@@ -44,6 +44,14 @@
   
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <style type="text/css">
+  .divider{
+    width:100%;
+    height:1px;
+    background: #BBB;
+    margin: 1rem 0;
+  }
+  </style>
 </head>
 <body class="sidebar-mini skin-yellow" style="height: auto; min-height: 100%;">
 {{-- <body class="hold-transition skin-blue sidebar-mini"> --}}

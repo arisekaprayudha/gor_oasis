@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <form class="form-horizontal" method="post" role="form" action="/arsip/{{ $pengajuaan->id }}/store">
+        <form class="form-horizontal" method="post" role="form" action="/pengajuaan/{{ $pengajuaan->id }}">
             @method('PUT')
             @csrf
             {{-- <input type="hidden"name="arsip_id"value="{{ $pengajuaan->arsip->id }}">

@@ -1,12 +1,12 @@
 @extends('layout.template')
-@section('title','Arsip Detail')
+@section('title','Klasifikasi Detail')
 
 @section('content')
 
 <div class="box">
     <div class="box-header with-border">
 
-        <h3 class="box-title">Detail Unit Kerja</h3>
+        <h3 class="box-title">Detail Klasifikasi</h3>
     </div>
 
     <div class="box-body">
@@ -14,21 +14,21 @@
         <div class="form-group row mt-2">
             <label class="col-sm-3 control-label">Kode :</label>
             <div class="col-sm-8">
-            <input class="form-control select2" name="code" value="{{$unitkerja->code}}" style="width: 100%;" disabled>
+            <input class="form-control select2" name="code" value="{{$klasifikasi->code}}" style="width: 100%;" disabled>
             </div>
         </div>
 
-        {{-- <div class="form-group row mt-2">
+        <div class="form-group row mt-2">
             <label class="col-sm-3 control-label">Sub Code :</label>
             <div class="col-sm-8">
-            <input class="form-control select2" name="subcode" value="{{$unitkerja->subcode}}" style="width: 100%;" disabled>
+            <input class="form-control select2" name="subcode" value="{{$klasifikasi->subcode}}" style="width: 100%;" disabled>
             </div>
-        </div> --}}
+        </div>
 
         <div class="form-group row mt-2">
-            <label class="col-sm-3 control-label">Unit Kerja :</label>
+            <label class="col-sm-3 control-label">Klasifikasi :</label>
             <div class="col-sm-8">
-            <input class="form-control select2" name="unitkerja" value="{{$unitkerja->unitkerja}}" style="width: 100%;" disabled>
+            <input class="form-control select2" name="klasifikasi" value="{{$klasifikasi->klasifikasi}}" style="width: 100%;" disabled>
             </div>
         </div>
         

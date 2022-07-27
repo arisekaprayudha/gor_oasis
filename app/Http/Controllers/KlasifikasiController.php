@@ -1,18 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Maatwebsite\Excel\facades\Excel;
-use App\Imports\UnitKerjaImport;
-use App\Exports\UnitkerjaExport;
-use App\Exports\UnitKerjaTemplate;
-use App\Models\UnitKerja;
+use App\Imports\KlasifikasiImport;
+use App\Exports\KlasifikasiExport;
+use App\Exports\KlasifikasiTemplate;
+use App\Models\Klasifikasi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Response;
 
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 
-class UnitKerjaController extends Controller
+class KlasifikasiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,9 +22,9 @@ class UnitKerjaController extends Controller
      */
     public function index()
     {
-        $unitkerja = UnitKerja::all();
+        $klasifikasi = Klasifikasi::all();
         //dd($unitkerja);
-        return view('unitkerja.index',compact('unitkerja'));
+        return view('klasifikasi.index',compact('klasifikasi'));
     }
 
     /**
@@ -44,31 +45,31 @@ class UnitKerjaController extends Controller
      */
     public function store(Request $request)
     {
-        $code_unitkerja = [
-            'table' => 'unit_kerjas',
+        $code_kalsifikasi = [
+            'table' => 'klasifikasis',
             'field' => 'code',
             'length' => 10,
-            'prefix' => 'UNT-'
+            'prefix' => 'KLS-'
         ];
 
         $request->validate([
 
-            'unitkerja' => 'required',
+            'klasifikasi' => 'required',
 
 
         ], [
            
-            'unitkerja.required' => 'Kolom Unit Kerja wajib diisi',
+            'klasifikasi.required' => 'Kolom Klasifikasi Kerja wajib diisi',
 
         ]);
 
 
-        $code = IdGenerator::generate($code_unitkerja);
+        $code = IdGenerator::generate($code_klasifikasi);
         $request->request->add(['code' => $code]);
 
-        $unitkerja = UnitKerja::create($request->all());
+        $klasifikasi = Klasifikasi::create($request->all());
 
-        return redirect('/unitkerja')->with('succes','success add data');
+        return redirect('/klasifikasi')->with('succes','success add data');
     }
 
     /**
@@ -79,8 +80,8 @@ class UnitKerjaController extends Controller
      */
     public function show($id)
     {
-        $unitkerja = UnitKerja::find($id);
-        return view('unitkerja.detail',compact('unitkerja'));
+        $klasifikasi = Klasifikasi::find($id);
+        return view('klasifikasi.detail',compact('klasifikasi'));
     }
 
     /**
@@ -91,8 +92,8 @@ class UnitKerjaController extends Controller
      */
     public function edit($id)
     {
-        $unitkerja = UnitKerja::findorfail($id);
-        return view('unitkerja.edit',compact('unitkerja'));
+        $klasifikasi = Klasifikasi::findorfail($id);
+        return view('klasifikasi.edit',compact('klasifikasi'));
     }
 
     /**
@@ -104,9 +105,9 @@ class UnitKerjaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $unitkerja = UnitKerja::findorfail($id);
-        $unitkerja->update($request->all());
-        return redirect('/unitkerja')->with('succes','success edit data');
+        $klasifikasi = Klasifikasi::findorfail($id);
+        $klasifikasi->update($request->all());
+        return redirect('/klasifikasi')->with('succes','success edit data');
     }
 
     /**
@@ -117,14 +118,14 @@ class UnitKerjaController extends Controller
      */
     public function destroy($id)
     {
-        $unitkerja = UnitKerja::find($id);
-        $unitkerja->delete();
-        return redirect('/unitkerja')->with('succes','success delete data');
+        $klasifikasi = Klasifikasi::find($id);
+        $klasifikasi->delete();
+        return redirect('/klasifikasi')->with('succes','success delete data');
     }
 
-    public function unitkerjaExport()
+    public function klasifikasiExport()
     {
-        return Excel::download(new UnitkerjaExport,'Unitkerja.xlsx');
+        return Excel::download(new KlasifikasiExport,'Klasifikasi.xlsx');
     }
 
     public function unitkerjaImport(Request $request)
@@ -133,12 +134,12 @@ class UnitKerjaController extends Controller
         $nameFile = $file->getClientOriginalName();
         $file->move('dataArsip', $nameFile);
 
-        Excel::import(new UnitKerjaImport, public_path('/dataunitkerja/'.$nameFile));
-        return redirect('/unitkerja');
+        Excel::import(new KlasifikasiImport, public_path('/dataklasifikasi/'.$nameFile));
+        return redirect('/klasifikasi');
     }
 
-    public function templateUnitkerja()
+    public function templateKlasifikasi()
     {
-        return Excel::download(new UnitKerjaTemplate,'TemplateUnitKerja.xlsx');
+        return Excel::download(new KlasifikasiTemplate,'TemplateKlasifikasi.xlsx');
     }
 }

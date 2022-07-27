@@ -4,6 +4,7 @@ use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\KlasifikasiController;
 use App\Http\Controllers\UnitKerjaController;
 
 use Illuminate\Support\Facades\Route;
@@ -35,13 +36,20 @@ use Illuminate\Support\Facades\Auth;
 
 Route::view('/','dashboard');
 
+Route::post('/ajaxRequest', [RequestController::class, 'ajaxRequestPost'])->name('ajaxRequest.post');
+
+//detail pengajuan peminjaman di user
+Route::get('/peminjaman/{id}', [RequestController::class, 'create']);
+
 //home page tampilan pendaftaran training
 Route::get('/dashboard',[HomeController::class,'index'])->name('home');
 
 Route::get('/requestrecord', [RequestController::class,'index']);
 
+//update approval arsip
+Route::put('/pengajuaan/{id}', [RequestController::class, 'update']);
 //store approval arsip
-Route::put('/arsip/{id}', [RequestController::class, 'update']);
+Route::post('/arsip/{id}/store', [RequestController::class, 'store']);
 
 //detail pengajuan untuk user
 //Route::get('/registsubmission/{id}', [RegistController::class,'registShow']);
@@ -110,6 +118,17 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/exportIndex',[IndexController::class,'indexExport']);
     Route::post('/importIndex',[IndexController::class,'indexImport'])->name('index.import');
     Route::get('/templateIndex',[IndexController::class,'templateIndex'])->name('index.template');
+
+    Route::get('/klasifikasi', [KlasifikasiController::class,'index']);
+    Route::post('/klasifikasi', [KlasifikasiController::class,'store']);
+    Route::get('/klasifikasi/create', [KlasifikasiController::class, 'create']);
+    Route::get('/klasifikasi/{id}', [KlasifikasiController::class, 'show']);
+    Route::get('/klasifikasi/{id}/edit', [KlasifikasiController::class,'edit']);
+    Route::put('/klasifikasi/{id}', [KlasifikasiController::class, 'update']);
+    Route::delete('/klasifikasi/{id}', [KlasifikasiController::class, 'destroy']);
+    Route::get('/exportKlasifikasi',[KlasifikasiController::class,'klasifikasiExport']);
+    Route::post('/importKlasifikasi',[KlasifikasiController::class,'klasifikasiImport'])->name('klasifikasi.import');
+    Route::get('/templateKlasifikasi',[KlasifikasiController::class,'templateKlasifikasi'])->name('klasifikasi.template');
 
     Route::get('/unitkerja', [UnitKerjaController::class,'index']);
     Route::post('/unitkerja', [UnitKerjaController::class,'store']);

@@ -1,10 +1,10 @@
-<?php
+deta<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePengajuaansTable extends Migration
+class CreateReportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,16 @@ class CreatePengajuaansTable extends Migration
      */
     public function up()
     {
-        Schema::create('pengajuaans', function (Blueprint $table) {
+        Schema::create('reports', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code')->unique();
             $table->unsignedInteger('user_id');
-            //$table->unsignedInteger('arsip_id')->nullable();
             $table->unsignedInteger('file_id')->nullable();
-            $table->boolean('status')->default(0)->nullable();
-            $table->longText('tujuan')->nullable();
-            $table->longText('description')->nullable();
+            $table->integer('downloadcount');
             $table->timestamps();
         });
 
-        Schema::table('pengajuaans', function(Blueprint $table){
+        Schema::table('reports', function(Blueprint $table){
             $table->foreign('user_id')->references('id')->on('hrmlmsusers')->onDelete('cascade')->unUpdate('cascade');
             //$table->foreign('arsip_id')->references('id')->on('arsips')->onDelete('cascade')->unUpdate('cascade');
             $table->foreign('file_id')->references('id')->on('detail_arsips')->onDelete('cascade')->unUpdate('cascade');
@@ -39,6 +36,6 @@ class CreatePengajuaansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pengajuaans');
+        Schema::dropIfExists('reports');
     }
 }

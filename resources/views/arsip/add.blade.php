@@ -20,7 +20,7 @@
 
     <form role="form" action="/arsip" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="box-body">
+        <div class="box-body form-horizontal">
 
             {{-- <div class="form-group row mt-2 {{$errors->has('nomerPelaksana') ? ' has-error' : ' '}}">
                 <label class="col-sm-3 control-label">Kode Pelaksaan :</label>
@@ -34,6 +34,23 @@
             </div>  --}}
 
             @if(auth()->user()->role()->where('nameRole', '=', 'Admin')->exists())
+            <div class="form-group row mt-2 {{$errors->has('klasifikasi_id') ? ' has-error' : ' '}}">
+                <label class="col-sm-3 control-label">Index :</label>
+                <div class="col-sm-8">
+                    <select class="form-control select2" value="{{ old('klasifikasi_id') }}"  id="klasifikasi_id" name="klasifikasi_id" placeholder="Select Unit Kerja" style="width: 100%;">
+                        <option value="">Select Index</option>
+                        @foreach($klasifikasi as $item)
+                        <option value="{{ $item->id }}" {{old('klasifikasi_id') == $item->id ? "selected" : ""}}>{{ $item->klasifikasi }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                @if ($errors->has('klasifikasi_id'))
+                <span class="help-block">
+                <strong>{{ $errors->first('klasifikasi_id') }}</strong>
+                @endif
+            </div>
+            @endif
+
             <div class="form-group row mt-2 {{$errors->has('unitkerja_id') ? ' has-error' : ' '}}">
                 <label class="col-sm-3 control-label">Unit Kerja :</label>
                 <div class="col-sm-8">
@@ -44,12 +61,11 @@
                         @endforeach
                     </select>
                 </div>
-                @if ($errors->has('unit_kerja_id'))
+                @if ($errors->has('unitkerja_id'))
                 <span class="help-block">
                 <strong>{{ $errors->first('unitkerja_id') }}</strong>
                 @endif
             </div>
-            @endif
 
             <div class="form-group row mt-2 {{$errors->has('jenis') ? ' has-error' : ' '}}">
                 <label class="col-sm-3 control-label">Jenis :</label>
@@ -94,7 +110,7 @@
             </div> --}}
 
             <div class="form-group row mt-2 {{$errors->has('index') ? ' has-error' : ' '}}">
-                <label class="col-sm-3 control-label">Index :</label>
+                <label class="col-sm-3 control-label"> Sub-Index :</label>
                 <div class="col-sm-8">
                     {{-- @foreach($index as $item) --}}
                     {{-- <label><input type="checkbox" name="index_id[]" value="{{ $item->index }}" class="minimal">{{ $item->index }}</label> --}}
@@ -143,7 +159,7 @@
                     <select class="form-control select2" id="media" name="media" placeholder="Media" style="width: 100%;">
                         <option value="">Media</option>
                         <option value="Kertas" {{old('kertas') == "kertas" ? "selected" : ""}}>Kertas</option>
-                        <option value="A3" {{old('a3') == "a3" ? "selected" : ""}}>A3</option>
+                        <option value="Flashdisk" {{old('flashdisk') == "flashdisk" ? "selected" : ""}}>Flashdisk</option>
                         <option value="CD" {{old('cd') == "cd" ? "selected" : ""}}>CD</option>
                     </select>
                     @if ($errors->has('media'))
@@ -278,9 +294,9 @@
             
             <div class="form-group row mt-2" id="file">
                 <label class="col-sm-3 control-label">Attachment : </label>
-                <div class="col-sm-4">
+                {{-- <div class="col-sm-4">
                     <input type="text" id="namefile" class="form-control" name="namefile[]" placeholder="Name File">
-                </div>
+                </div> --}}
 
                 <div class="col-sm-3">
                     <input type="file" class="form-control" name="file[]" placeholder="file">
@@ -321,7 +337,7 @@
 
       });
       function addfile(){
-          var file= ' <div class="form-group row mt-2" id="file"><label class="col-sm-3 control-label">Attachment : </label><div class="col-sm-4"><input type="text" id="namefile" class="form-control" name="namefile[]" placeholder="Name File"></div><div class="col-sm-3"><input type="file" class="form-control" name="file[]" placeholder="file"></div><div class="col-lg-1"><a href="#" class="remove btn btn-danger addfile" style="float:right"><i class="fa fa-trash"></i></a></div></div>';
+          var file= ' <div class="form-group row mt-2" id="file"><label class="col-sm-3 control-label">Attachment : </label><div class="col-sm-3"><input type="file" class="form-control" name="file[]" placeholder="file"></div><div class="col-lg-1"><a href="#" class="remove btn btn-danger addfile" style="float:right"><i class="fa fa-trash"></i></a></div></div>';
           $('.file').append(file);
  
       };
@@ -334,14 +350,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#unitkerja_id').on('change', function () {
+        $('#klasifikasi_id').on('change', function () {
             var idUnitkerja = this.value;
             $("#index_id").html('');
             $.ajax({
                 url: "{{url('api/fetch-index')}}",
                 type: "POST",
                 data: {
-                    unitkerja_id: idUnitkerja,
+                    klasifikasi_id: idUnitkerja,
                     _token: '{{csrf_token()}}'
                 },
                 dataType: 'json',

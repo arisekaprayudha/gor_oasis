@@ -16,8 +16,8 @@ class CreateUnitKerjasTable extends Migration
         Schema::create('unit_kerjas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code')->unique();
-            $table->string('subcode')->unique();
-            $table->string('unitkerja')->unique();
+            //$table->string('subcode')->unique();
+            $table->string('unitkerja');
             $table->timestamps();
         });
     }

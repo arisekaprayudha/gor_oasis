@@ -15,9 +15,9 @@ class CreateDetailArsipsTable extends Migration
     {
         Schema::create('detail_arsips', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code')->unique();
+            //$table->string('code')->unique();
             $table->unsignedInteger('arsip_id');
-            $table->string('namafile'); 
+            //$table->string('namefile'); 
             $table->string('file');
             $table->timestamps();
         });

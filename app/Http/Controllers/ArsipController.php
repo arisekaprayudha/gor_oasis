@@ -8,7 +8,9 @@ use App\Exports\ArsipExport;
 use App\Exports\ArsipTemplate;
 use App\Models\Index;
 use App\Models\Arsip;
+use App\Models\Klasifikasi;
 use App\Models\UnitKerja;
+use App\Models\DetailArsip;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Response;
@@ -28,10 +30,11 @@ class ArsipController extends Controller
     {
         $index = Index::all();
         $arsip = Arsip::all();
+        $klasifikasi = Klasifikasi::all();
         $unitkerja = UnitKerja::all();
         $data_unitkerja = Arsip::where('unitkerja_id', Auth::user()->unitkerja_id)->get();
         //dd($data_unitkerja);
-        return view('arsip.index',compact('index','arsip','unitkerja','data_unitkerja'));
+        return view('arsip.index',compact('klasifikasi','index','arsip','unitkerja','data_unitkerja'));
         //return view('arsip.index',compact('index','arsip','unitkerja'));
     }
 
@@ -44,8 +47,9 @@ class ArsipController extends Controller
     {
         $index = Index::all();
         $unitkerja = UnitKerja::all();
-        $data_index = Index::where('unitkerja_id', Auth::user()->unitkerja_id)->get();
-        return view('arsip.add',compact('index','unitkerja','data_index'));
+        $klasifikasi = Klasifikasi::all();
+        $data_index = Index::where('klasifikasi_id', Auth::user()->klasifikasi_id)->get();
+        return view('arsip.add',compact('index','unitkerja','data_index','klasifikasi'));
     }
 
     /**
@@ -98,6 +102,7 @@ class ArsipController extends Controller
         $arsip->index_id = $request->index_id;
         //$arsip->index_id = json_encode($request->index_id);
         $arsip->code = IdGenerator::generate($code_arsip);
+        $arsip->klasifikasi_id = $request->klasifikasi_id;
         $arsip->unitkerja_id = $request->unitkerja_id;
         //$arsip->klasifikasi = $request->klasifikasi;
         $arsip->kondisi = $request->kondisi;
@@ -120,6 +125,48 @@ class ArsipController extends Controller
         // $arsip->file=$filename;
 
         $arsip->save();
+
+        $arsip_id = $arsip->id;
+        
+        $data = $request->all();
+        //dd($data);
+        // $files = [];
+
+        // if($request->hasfile('namefile'))
+        //  {
+        //     foreach($request->file('namefile') as $file)
+        //     {
+        //         $name = time().rand(1,100).'.'.$file->extension();
+        //         $file->move(public_path('files'), $name);  
+        //         $files[] = $name;  
+        //     }
+        //  }
+  
+        //  $file= new DetailArsip();
+        //  $file->namefile = $files;
+        //  $file->save();
+
+        foreach($request->file('file') as $file)
+            {
+                $name = date('YmdHi').$file->getClientOriginalName();
+                $file->move(public_path('files'), $name);  
+                //$files[] = $name;  
+                DetailArsip::create([
+                    'arsip_id' => $arsip_id,
+                    //'namefile' => $namefile,
+                    'file' => $name,
+                ]);
+            }
+
+        // foreach($request->get('namefile') as $item=>$value){
+
+        //     $detailarsip = array(
+        //         'arsip_id' => $arsip_id,
+        //         'namefile' => $data['file'][$item],
+        //         'file' => $data['file'][$item],
+        //     );
+        //     DetailArsip::create($detailarsip);
+        // }
 
         return redirect('/arsip')->with('succes','success add data');
     }
@@ -198,13 +245,16 @@ class ArsipController extends Controller
 
     public function download($file)
     {
-            return response()->download(public_path('Arsip/'.$file));
+
+
+            //dd($file);
+        return response()->download(public_path('files/'.$file));
     }
 
     public function getIndex(Request $request)
     {
 
-        $data['indices'] = Index::where("unitkerja_id",$request->unitkerja_id)->get(["id","index"]);
+        $data['indices'] = Index::where("klasifikasi_id",$request->klasifikasi_id)->get(["id","index"]);
         return response()->json($data);
     }
 }

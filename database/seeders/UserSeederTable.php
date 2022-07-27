@@ -23,9 +23,9 @@ class UserSeederTable extends Seeder
             ],
             [
                 'id'             => 2,
-                'name'           => 'Aitisen',
+                'name'           => 'Azka',
                 'unitkerja_id'           => '2',
-                'nip'          => '2201749753',
+                'nip'          => '1001001001',
                 'password'       => '$2y$10$rfopfbtFn.yUxbMBwN6RjOEtoNGn6lyqxzppqM6WaJAEw/Z.MuwDW',
                 'two_factor_secret'        => '',
                 'two_factor_recovery_codes' => '',
@@ -33,9 +33,9 @@ class UserSeederTable extends Seeder
             ],
             [
                 'id'             => 3,
-                'name'           => 'Robert Hill',
+                'name'           => 'Aitisen',
                 'unitkerja_id'           => '1',
-                'nip'          => '1001001001',
+                'nip'          => '2201749753',
                 'password'       => '$2y$10$uC61RQQ5Lcswnp7MAbyPt.EyC.7vY7Jv1Gu7dr2FncwopIngcg.Xy',
                 'two_factor_secret'        => '',
                 'two_factor_recovery_codes' => '',

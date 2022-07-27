@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailArsip;
 use App\Models\Pengajuaan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -29,9 +30,10 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $detailarsip = DetailArsip::find($id);
+        return view('pengajuaanPeminjaman', compact('detailarsip'));
     }
 
     /**
@@ -40,7 +42,7 @@ class RequestController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $arsip_id)
+    public function store(Request $request, $file_id)
     {
         $code = [
             'table' => 'pengajuaans',
@@ -49,17 +51,53 @@ class RequestController extends Controller
             'prefix' => 'RQS-'
         ];
 
-        //dd($arsip_id);
+        //dd($request);
         $code_pengajuan = IdGenerator::generate($code);
         $request->request->add(['code' => $code_pengajuan]);
         //$arsip->code = IdGenerator::generate($code_pengajuan);
         $request->request->add(['user_id' => $request->user()->id]);
-        $request->request->add(['arsip_id' => $arsip_id]);
+        $request->request->add(['file_id' => $file_id]);
+        //$request->request->add(['tujuan' => $request->tujuan]);
 
         $pengajuaan = Pengajuaan::create($request->all());
+        //dd($pengajuaan);
 
         //return redirect('/arsip')->with('succes','success request arsip');
         return redirect('/requestrecord')->with('succes','success request arsip');
+    }
+
+    public function ajaxRequestPost(Request $request, $file_id)
+    {
+        // $input = $request->all();
+          
+        // Log::info($input);
+     
+        // return response()->json($data);
+        // return response()->json(['success'=>'Got Simple Ajax Request.']);
+    
+        $code_download = [
+            'table' => 'repots',
+            'field' => 'code',
+            'length' => 10,
+            'prefix' => 'DWN-'
+        ];
+
+        $report = new Report();
+        $report->code = IdGenerator::generate($code_download);
+        $report->user_id = $request->user()->id;
+        $report->countdownload = $report->count+1;
+
+        // $code_download = IdGenerator::generate($code);
+        // $request->request->add(['code' => $code_download]);
+        // $request->request->add(['user_id' => $request->user()->id]);
+        // $request->request->add(['file_id' => $file]);
+        // $report->countdownload = $report->count+1;
+        // $report = Report::create($request->all());
+
+        // $report = new Report;
+        // $report->file_id=$request->namefile;
+        $report->save();
+        //return response()->json(['bool'=>true]);
     }
 
     /**

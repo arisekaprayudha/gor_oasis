@@ -29,8 +29,8 @@
                 <th>Kode Request</th>
                 <th>User</th>
                 <th>Unit Kerja</th>
-                <th>Klasifikasi</th>
                 <th>Kode Arsip</th>
+                <th>Nama Arsip</th>
                 <th>Tanggal Request</th>
                 <th>Satus</th>
                 <th class="text-center">Aksi</th>
@@ -43,8 +43,9 @@
                 <td>{{ $item->code }}</td>
                 <td>{{ $item->user->name }}</td>
                 <td>{{ $item->user->unitkerja->unitkerja }}</td>
-                <td>{{ $item->arsip->index->subcode }}</td>
-                <td>{{ $item->arsip->code }}</td>
+                <td>{{ $item->detail_arsip->arsip->code}}</td>
+                <td>{{ $item->detail_arsip->file}}</td>
+                {{-- <td>{{ $item->arsip->code }}</td> --}}
                 <td>{{ $item->created_at }}</td>
                 <td>
                     @if($item->status == 1)

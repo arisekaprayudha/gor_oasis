@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Index;
+use App\Models\Arsip;
+use App\Models\Klasifikasi;
+use App\Models\UnitKerja;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -23,7 +27,10 @@ class SearchController extends Controller
      */
     public function create()
     {
-        return view('filtering');
+        $index = Index::all();
+        $unitkerja = UnitKerja::all();
+        $klasifikasi = Klasifikasi::all();
+        return view('filtering',compact('index','unitkerja','klasifikasi'));
     }
 
     /**

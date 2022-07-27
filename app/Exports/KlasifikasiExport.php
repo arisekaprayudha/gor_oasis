@@ -2,28 +2,28 @@
 
 namespace App\Exports;
 
-use App\Models\UnitKerja;
+use App\Models\Klasifikasi;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class UnitkerjaExport implements FromCollection, WithMapping, WithHeadings
+class KlasifikasiExport implements FromCollection, WithMapping, WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return UnitKerja::all();
+        return Klasifikasi::all();
     }
 
-    public function map($unitkerja): array
+    public function map($klasifikasi): array
     {
         return [
-            $unitkerja->code,
-            //$unitkerja->subcode,
-            $unitkerja->unitkerja,
+            $klasifikasi->code,
+            $uklasifikasi->subcode,
+            $klasifikasi->klasifikasi,
         ];
 
     }
@@ -32,7 +32,7 @@ class UnitkerjaExport implements FromCollection, WithMapping, WithHeadings
         return [
             'CODE',
             'SUBCODE',
-            'UNIT KERJA',
+            'KLASIFIKASI',
         ];
     }
 }

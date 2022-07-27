@@ -22,12 +22,12 @@
         </div>
 
         <div class="form-group row mt-2">
-            <label class="col-sm-3 control-label">Unit Kerja :</label>
+            <label class="col-sm-3 control-label">Klasifikasi :</label>
             <div class="col-lg-3">
-                <select class="form-control select2" id="role_id" name="role_id" value="{{ $index->unitkerja->unitkerja }}" placeholder="Role" style="width: 100%;">
-                <option value="">Select Unit Kerja</option>
-                @foreach($unitkerja as $item)
-                <option value="{{ $item->id }}" {{ $item->id == $index->unitkerja->id  ? "selected" : ""}}>{{ $item->unitkerja }}</option>
+                <select class="form-control select2" id="role_id" name="role_id" value="{{ $index->klasifikasi->klasifikasi }}" placeholder="Role" style="width: 100%;">
+                <option value="">Select Klasifikas</option>
+                @foreach($klasifikasi as $item)
+                <option value="{{ $item->id }}" {{ $item->id == $index->klasifikasi->id  ? "selected" : ""}}>{{ $item->klasifikasi }}</option>
                 @endforeach
                 </select>
             </div>
@@ -36,7 +36,7 @@
         <div class="form-group row mt-2">
             <label class="col-sm-3 control-label">Index:</label>
             <div class="col-sm-8">
-                <input class="form-control select2"  name="unitkerja" type="text" value="{{ $index->index}}" >
+                <input class="form-control select2"  name="klasifikasi" type="text" value="{{ $index->klasifikasi}}" >
             </div>
         </div>
 

@@ -21,7 +21,7 @@ class IndexImport implements ToModel, WithHeadingRow
         return new Index([
             'code' => $row['Code'],
             'subcode' => $row['Subcode'],
-            'unitkerja_id' => $row['Unit Kerja ID'],
+            'klasifikasi_id' => $row['Klasifikasi ID'],
             'index' => $row['Index'],
         ]);
     }

@@ -1,5 +1,5 @@
 @extends('layout.template')
-@section('title','Data Unit Kerja')
+@section('title','Data Klasifikasi')
 
 {{-- @if(session('succes'))
     <div class="alert alert-success" role="alert">
@@ -16,16 +16,16 @@
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Data Unit Kerja</h3>
+        <h3 class="box-title">Data Klasifikasi</h3>
         <div class="pull-right">
             <!-- Button trigger modal -->
             {{-- <button type="button" class="btn btn-primary btn-flat" data-toggle="modal" data-target="#provider">
                 create
             </button> --}}
-            <a href="/unitkerja/create" class="btn btn-primary btn-flat">
+            <a href="/klasifikasi/create" class="btn btn-primary btn-flat">
                 create
             </a>
-            <a href="/exportUnitkerja" type="button" class="btn btn-success btn-flat">
+            <a href="/exportKlasifikasi" type="button" class="btn btn-success btn-flat">
                 Export
             </a>
             <button type="button" class="btn btn-danger btn-flat" data-toggle="modal" data-target="#upload">
@@ -43,24 +43,26 @@
             <tr>
                 <th class="text-center">No</th>
                 <th>Kode</th>
-                <th>Name Unit Kerja</th>
+                <th>Subcode</th>
+                <th>Name Klasifikasi</th>
                 <th class="text-center">Aksi</th>
             </tr> 
         </thead>
         <tbody>
-            @foreach ($unitkerja as $item)
+            @foreach ($klasifikasi as $item)
             <tr>
                 <td class="text-center">{{ $loop->iteration }}</td>
                 <td>{{ $item->code }}</td>
-                <td>{{ $item->unitkerja }}</td>
+                <td>{{ $item->subcode }}</td>
+                <td>{{ $item->klasifikasi }}</td>
                 <td class="text-center" width="200px">
-                    <a href="{{url('/unitkerja/'.$item->id)}} " class="btn btn-sm btn-success" >
+                    <a href="{{url('/klasifikasi/'.$item->id)}} " class="btn btn-sm btn-success" >
                         <i class="fa fa-eye"></i> 
                     </a>
-                    <a href="{{url('/unitkerja/'.$item->id.'/edit')}}" class="btn btn-sm btn-primary">
+                    <a href="{{url('/klasifikasi/'.$item->id.'/edit')}}" class="btn btn-sm btn-primary">
                         <i class="fa fa-pencil"></i>
                     </a>
-                    <form action="{{ url('unitkerja/'.$item->id) }}" class="inline" method="post" onclick="return confirm('Are you sure want to delete this data?')">
+                    <form action="{{ url('klasifikasi/'.$item->id) }}" class="inline" method="post" onclick="return confirm('Are you sure want to delete this data?')">
                         @method('delete')
                         @csrf         
                         <button type="submit" class="btn btn-sm btn-danger" >
@@ -110,12 +112,12 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-          <h4 class="modal-title" id="myModalLabel">Import Unit Kerja</h4>
+          <h4 class="modal-title" id="myModalLabel">Import Klasifikasi</h4>
         </div>
         <form action="#" method="post" enctype="multipart/form-data">
             <div class="modal-body">
                 @csrf
-                <p><strong>Templates can be downloaded <a href="{{route('unitkerja.template')}}">here</a></strong></p>
+                <p><strong>Templates can be downloaded <a href="{{route('klasifikasi.template')}}">here</a></strong></p>
                 <div class="form-group">
                     <label for="file">File :</label>
                     <input type="file" name="file" class="form-control" required="required">
