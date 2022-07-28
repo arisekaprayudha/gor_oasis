@@ -6,6 +6,7 @@ use Maatwebsite\Excel\facades\Excel;
 use App\Imports\ArsipImport;
 use App\Exports\ArsipExport;
 use App\Exports\ArsipTemplate;
+use App\Models\Report;
 use App\Models\Index;
 use App\Models\Arsip;
 use App\Models\Klasifikasi;
@@ -13,6 +14,7 @@ use App\Models\UnitKerja;
 use App\Models\DetailArsip;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 use Auth;
@@ -179,8 +181,14 @@ class ArsipController extends Controller
      */
     public function show($id)
     {
+        // $download = DB::table('reports')
+        // ->join('detail_arsips','reports.file_id','=','detail_arsips.$id')
+        // ->count();
+        // dd($download);
+        $download = Report::get();
+        //dd($download);
         $arsip = Arsip::find($id);
-        return view('arsip.detail',compact('arsip'));
+        return view('arsip.detail',compact('arsip','download'));
         // return view('arsip.detail');
     }
 

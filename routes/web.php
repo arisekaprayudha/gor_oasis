@@ -36,7 +36,9 @@ use Illuminate\Support\Facades\Auth;
 
 Route::view('/','dashboard');
 
-Route::post('/ajaxRequest', [RequestController::class, 'ajaxRequestPost'])->name('ajaxRequest.post');
+Route::get('/ajaxRequest', [RequestController::class, 'ajaxRequestPost'])->name('ajaxRequestPost');
+
+// Route::post('/ajaxRequest/{file_id}', [RequestController::class, 'ajaxRequestPost'])->name('ajaxRequest.post');
 
 //detail pengajuan peminjaman di user
 Route::get('/peminjaman/{id}', [RequestController::class, 'create']);
@@ -49,7 +51,9 @@ Route::get('/requestrecord', [RequestController::class,'index']);
 //update approval arsip
 Route::put('/pengajuaan/{id}', [RequestController::class, 'update']);
 //store approval arsip
-Route::post('/arsip/{id}/store', [RequestController::class, 'store']);
+//Route::post('/arsip/{id}/store', [RequestController::class, 'store']);
+Route::post('/arsip/store', [RequestController::class, 'store']);
+
 
 //detail pengajuan untuk user
 //Route::get('/registsubmission/{id}', [RegistController::class,'registShow']);

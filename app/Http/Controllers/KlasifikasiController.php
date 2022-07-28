@@ -34,7 +34,7 @@ class KlasifikasiController extends Controller
      */
     public function create()
     {
-        return view('unitkerja.add');
+        return view('klasifikasi.add');
     }
 
     /**
@@ -45,12 +45,6 @@ class KlasifikasiController extends Controller
      */
     public function store(Request $request)
     {
-        $code_kalsifikasi = [
-            'table' => 'klasifikasis',
-            'field' => 'code',
-            'length' => 10,
-            'prefix' => 'KLS-'
-        ];
 
         $request->validate([
 
@@ -62,6 +56,14 @@ class KlasifikasiController extends Controller
             'klasifikasi.required' => 'Kolom Klasifikasi Kerja wajib diisi',
 
         ]);
+
+
+        $code_klasifikasi = [
+            'table' => 'klasifikasis',
+            'field' => 'code',
+            'length' => 10,
+            'prefix' => 'KLS-'
+        ];
 
 
         $code = IdGenerator::generate($code_klasifikasi);

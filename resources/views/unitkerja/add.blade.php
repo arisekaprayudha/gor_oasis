@@ -20,7 +20,7 @@
 
     <form role="form" action="/unitkerja" method="post">
         @csrf
-        <div class="box-body">
+        <div class="box-body form-horizontal">
 
             <div class="form-group row mt-2 {{$errors->has('unitkerja') ? ' has-error' : ' '}}">
                 <label class="col-sm-3 control-label">Nama Unit Kerja :</label>

@@ -1,5 +1,5 @@
 @extends('layout.template')
-@section('title','Add Arsip')
+@section('title','Add Index')
 
 @section('content')
 
@@ -20,7 +20,7 @@
 
     <form role="form" action="/index" method="post">
         @csrf
-        <div class="box-body">
+        <div class="box-body form-horizontal">
 
             <div class="form-group row mt-2 {{$errors->has('index') ? ' has-error' : ' '}}">
                 <label class="col-sm-3 control-label">Index :</label>
@@ -45,12 +45,12 @@
             </div> 
 
             <div class="form-group row mt-2 {{$errors->has('unitkerja_id') ? ' has-error' : ' '}}">
-                <label class="col-sm-3 control-label">Unit Kerja :</label>
+                <label class="col-sm-3 control-label">Klasifikasi :</label>
                 <div class="col-sm-8">
-                    <select class="form-control select2" value="{{ old('unitkerja_id') }}"  id="category_id" name="unitkerja_id" placeholder="Select Unit Kerja" style="width: 100%;">
-                        <option value="">Select Unit Kerja</option>
-                        @foreach($unitkerja as $item)
-                        <option value="{{ $item->id }}" {{old('unitkerja_id') == $item->id ? "selected" : ""}}>{{ $item->unitkerja }}</option>
+                    <select class="form-control select2" value="{{ old('unitkerja_id') }}"  id="category_id" name="klasifikasi_id" placeholder="Select Unit Kerja" style="width: 100%;">
+                        <option value="">Select Kasifikasi</option>
+                        @foreach($klasifikasi as $item)
+                        <option value="{{ $item->id }}" {{old('unitkerja_id') == $item->id ? "selected" : ""}}>{{ $item->klasifikasi }}</option>
                         @endforeach
                     </select>
                     @if ($errors->has('unitkerja_id'))

@@ -9,7 +9,7 @@
         <h3 class="box-title">Request Detail</h3>
     </div>
 
-    <div class="box-body">
+    <div class="box-body form-horizontal">
 
         <div class="form-group row mt-2">
             <label class="col-sm-3 control-label">Tanggal Request :</label>

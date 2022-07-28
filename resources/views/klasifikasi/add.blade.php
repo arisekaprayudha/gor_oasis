@@ -20,7 +20,7 @@
 
     <form role="form" action="/klasifikasi" method="post">
         @csrf
-        <div class="box-body">
+        <div class="box-body form-horizontal">
 
             <div class="form-group row mt-2 {{$errors->has('klasifikasi') ? ' has-error' : ' '}}">
                 <label class="col-sm-3 control-label">Nama Klasifikasi :</label>
@@ -29,6 +29,17 @@
                 @if ($errors->has('klasifikasi'))
                 <span class="help-block">
                 <strong>{{ $errors->first('klasifikasi') }}</strong>
+                @endif
+                </div>
+            </div>
+            
+            <div class="form-group row mt-2 {{$errors->has('subcode') ? ' has-error' : ' '}}">
+                <label class="col-sm-3 control-label">Sub Code :</label>
+                <div class="col-sm-8">
+                    <input type="text" name="subcode" value="{{ old('subcode') }}"  class="form-control" id="subcode" placeholder="Sub Code">
+                @if ($errors->has('subcode'))
+                <span class="help-block">
+                <strong>{{ $errors->first('subcode') }}</strong>
                 @endif
                 </div>
             </div> 

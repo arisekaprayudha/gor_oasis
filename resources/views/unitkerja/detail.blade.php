@@ -1,5 +1,5 @@
 @extends('layout.template')
-@section('title','Arsip Detail')
+@section('title','Detail Unit Kerja')
 
 @section('content')
 
@@ -9,7 +9,7 @@
         <h3 class="box-title">Detail Unit Kerja</h3>
     </div>
 
-    <div class="box-body">
+    <div class="box-body form-horizontal">
 
         <div class="form-group row mt-2">
             <label class="col-sm-3 control-label">Kode :</label>

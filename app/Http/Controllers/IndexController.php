@@ -6,7 +6,7 @@ use Maatwebsite\Excel\facades\Excel;
 use App\Imports\IndexImport;
 use App\Exports\IndexExport;
 use App\Exports\IndexTemplate;
-use App\Models\UnitKerja;
+use App\Models\Klasifikasi;
 use App\Models\Index;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -37,8 +37,8 @@ class IndexController extends Controller
      */
     public function create()
     {
-        $unitkerja = UnitKerja::all();
-        return view('index.add',compact('unitkerja'));
+        $klasifikasi = Klasifikasi::all();
+        return view('index.add',compact('klasifikasi'));
     }
 
     /**
@@ -49,18 +49,18 @@ class IndexController extends Controller
      */
     public function store(Request $request)
     {
-
+        //dd($request);
         $request->validate([
 
             'index' => 'required',
-            'subcode' => 'required|unique',
+            'subcode' => 'required',
             'klasifikasi_id' => 'required',
 
         ], [
             'index.required' => 'Kolom Index wajib diisi',
-            'subcode.unique' => 'Kolom Subcode harus unique',
+            //'subcode.unique' => 'Kolom Subcode harus unique',
             'subcode.required' => 'Kolom Subcode wajib diisi',
-            'klasifikasi_id.required' => 'Kolom Unit Kerja wajib diisi',
+            'klasifikasi_id.required' => 'Kolom Klasifikasi wajib diisi',
 
         ]);
 
@@ -102,8 +102,8 @@ class IndexController extends Controller
     public function edit($id)
     {
         $index = Index::findorfail($id);
-        $unitkerja = UnitKerja::all();
-        return view('index.edit',compact('index','unitkerja'));
+        $klasifikasi = Klasifikasi::all();
+        return view('index.edit',compact('index','klasifikasi'));
     }
 
     /**

@@ -1,15 +1,15 @@
 @extends('layout.template')
-@section('title','Arsip Detail')
+@section('title','Detail Arsip')
 
 @section('content')
 
 <div class="box">
     <div class="box-header with-border">
 
-        <h3 class="box-title">Arsip Detail</h3>
+        <h3 class="box-title">Detail Arsip</h3>
     </div>
 
-    <div class="box-body">
+    <div class="box-body form-horizontal">
 
         <div class="form-group row mt-2">
             <label class="col-sm-3 control-label">Nomer Pelaksana :</label>
@@ -42,12 +42,24 @@
         @foreach ($arsip->detailarsip as $items)
         <div class="form-group row mt-2">
             <label class="col-sm-3 control-label">File :</label>
+            {{-- @foreach ($items->report as $test) --}}
+            <span class="right badge badge-danger"></span>
             <div class="col-sm-6">
-                <input class="form-control select2" name="namefile" value="{{$items->file}}" style="width: 100%;" disabled>
+                <input class="form-control select2" value="{{$items->file}}" style="width: 100%;"  disabled>
+                {{-- <input class="form-control select2" type="hidden" name="namefile" value="{{$items->id}}" style="width: 100%;"  disabled> --}}
             </div>
+            {{-- @endforeach --}}
+    
             <div class="col-sm-1">
                 {{-- <a href="{{route('arsip-download',$items->file)}}" type="button" class="btn btn-sm btn-danger"><i class="fa fa-download"></i></a> --}}
-                <a href="{{route('arsip-download',$items->file)}}" type="button" class="btn btn-sm btn-danger btn-submit"><i class="fa fa-download"></i></a>
+                {{-- <a href="{{route('arsip-download',$items->file)}}" data-id="{{$items->id}}" type="button" class="btn btn-sm btn-danger downloader"><i class="fa fa-download"></i></a> --}}
+                <a href="{{route('arsip-download',$items->file)}}" data-id="{{$items->id}}" id="downloader" class="btn btn-sm btn-danger downloader"><i class="fa fa-download"></i></a>
+            
+                {{-- <form action="/ajaxRequest/{{$items->id}}" method="post">
+                    @csrf
+                    @method('Post')
+                    <button class="btn-submit" type="submit" onclick="{{route('arsip-download',$items->file)}}"></button>
+                </form> --}}
             </div>
             <div class="col-sm-1">
                 @if(auth()->user()->role()->where('nameRole', '=', 'User')->exists())
@@ -90,27 +102,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 <script type="text/javascript">
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-   
-    $(".btn-submit").click(function(e){
-  
-        e.preventDefault();
-   
-        var name = $("input[name=namefile]").val();
-   
-        $.ajax({
-           type:'POST',
-           url:"{{ route('ajaxRequest.post') }}",
-           data:{file_id:name},
-           success:function(data){
-              alert(data.success);
-           }
-        });
-
 
     function statusCheck() {
         if (document.getElementById('reject').checked) {
@@ -119,6 +110,23 @@
         else document.getElementById('ifreject').style.display = 'none';
     
     }
+
+    $(document).ready(function(){
+
+        $("#downloader").click(function(){
+            var idFile = $(this).attr('data-id');
+
+            $.ajax({
+                type:'GET',
+                url:"{{url('ajaxRequest')}}",
+                data:{id:idFile},
+                success:function(data){
+                    console.log();
+                }
+            });
+        });
+    });
+    
 
 </script>
 

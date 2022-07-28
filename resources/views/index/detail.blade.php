@@ -9,7 +9,7 @@
         <h3 class="box-title">Index Detail</h3>
     </div>
 
-    <div class="box-body">
+    <div class="box-body form-horizontal">
 
         <div class="form-group row mt-2">
             <label class="col-sm-3 control-label">Kode :</label>
@@ -33,9 +33,9 @@
         </div>
 
         <div class="form-group row mt-2">
-            <label class="col-sm-3 control-label"> :</label>
+            <label class="col-sm-3 control-label">Klasifikasi :</label>
             <div class="col-sm-8">
-            <input class="form-control select2" name="unitkerja" value="{{$index->unitkerja->unitkerja}}" style="width: 100%;" disabled>
+            <input class="form-control select2" name="unitkerja" value="{{$index->klasifikasi->klasifikasi}}" style="width: 100%;" disabled>
             </div>
         </div>
         

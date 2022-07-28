@@ -12,7 +12,7 @@
         @method('PUT')
         @csrf
 
-        <div class="box-body">
+        <div class="box-body form-horizontal">
 
         <div class="form-group row mt-2">
             <label class="col-sm-3 control-label">Sub Code:</label>
@@ -24,7 +24,7 @@
         <div class="form-group row mt-2">
             <label class="col-sm-3 control-label">Klasifikasi :</label>
             <div class="col-lg-3">
-                <select class="form-control select2" id="role_id" name="role_id" value="{{ $index->klasifikasi->klasifikasi }}" placeholder="Role" style="width: 100%;">
+                <select class="form-control select2" id="klasifikasi_id" name="klasifikasi_id" value="{{ $index->klasifikasi->klasifikasi }}" placeholder="Role" style="width: 100%;">
                 <option value="">Select Klasifikas</option>
                 @foreach($klasifikasi as $item)
                 <option value="{{ $item->id }}" {{ $item->id == $index->klasifikasi->id  ? "selected" : ""}}>{{ $item->klasifikasi }}</option>
@@ -36,7 +36,7 @@
         <div class="form-group row mt-2">
             <label class="col-sm-3 control-label">Index:</label>
             <div class="col-sm-8">
-                <input class="form-control select2"  name="klasifikasi" type="text" value="{{ $index->klasifikasi}}" >
+                <input class="form-control select2"  name="index" type="text" value="{{ $index->index}}" >
             </div>
         </div>
 
