@@ -18,7 +18,7 @@ class CreateDetailArsipsTable extends Migration
             //$table->string('code')->unique();
             $table->unsignedInteger('arsip_id');
             //$table->string('namefile'); 
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->timestamps();
         });
 

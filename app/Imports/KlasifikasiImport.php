@@ -20,18 +20,8 @@ class KlasifikasiImport implements ToModel, WithHeadingRow
     {
         return new Klasifikasi([
             'code' => $row['Code'],
-            'index_id' => $row['Index'],
-            'klasifikasi' => $row['ID Klasifikasi'],
-            'unitkerja_id' => $row['ID Unit Kerja'],
-            'uraian' => $row['Uraian'],
-            'tanggal' => $row['Tanggal'],
-            'tingkatpengembangan' => $row['Tingkat Pengembangan'],
-            'media' => $row['Media'],
-            'kondisi' => $row['Kondisi'],
-            'jumlah' => $row['Jumlah'],
-            'lokasi' => $row['Lokasi'],
-            'retensi' => $row['Retensi'],
-            'akhirRetensi' => $row['Akhir Retensi'],
+            'subcode' => $row['Subcode'],
+            'klasifikasi' => $row['Klasifikasi'],
         ]);
     }
 }

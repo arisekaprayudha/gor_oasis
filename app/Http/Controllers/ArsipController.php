@@ -6,6 +6,7 @@ use Maatwebsite\Excel\facades\Excel;
 use App\Imports\ArsipImport;
 use App\Exports\ArsipExport;
 use App\Exports\ArsipTemplate;
+use App\Exports\ArsipTemplateFile;
 use App\Models\Report;
 use App\Models\Index;
 use App\Models\Arsip;
@@ -32,11 +33,12 @@ class ArsipController extends Controller
     {
         $index = Index::all();
         $arsip = Arsip::all();
+        $tahun = Arsip::distinct()->get(['tahun']);
         $klasifikasi = Klasifikasi::all();
         $unitkerja = UnitKerja::all();
         $data_unitkerja = Arsip::where('unitkerja_id', Auth::user()->unitkerja_id)->get();
         //dd($data_unitkerja);
-        return view('arsip.index',compact('klasifikasi','index','arsip','unitkerja','data_unitkerja'));
+        return view('arsip.index',compact('tahun','klasifikasi','index','arsip','unitkerja','data_unitkerja'));
         //return view('arsip.index',compact('index','arsip','unitkerja'));
     }
 
@@ -68,9 +70,9 @@ class ArsipController extends Controller
             'index_id' => 'required',
             'unitkerja_id' => 'required',
             'jumlah' => 'required',
-            'tanggal' => 'required',
+            // 'tanggal' => 'required',
             'kondisi' => 'required',
-            'jenis' => 'required',
+            // 'jenis' => 'required',
             'media' => 'required',
             'tingkatpengembangan' => 'required',
             'lokasi' => 'required',
@@ -82,9 +84,9 @@ class ArsipController extends Controller
             'index_id.required' => 'Kolom Index wajib diisi',
             'unitkerja_id.required' => 'Kolom Unit Kerja wajib diisi',
             'jumlah.required' => 'Kolom jumlah wajib diisi',
-            'tanggal.required' => 'Kolom Tanggal wajib diisi',
+            // 'tanggal.required' => 'Kolom Tanggal wajib diisi',
             'kondisi.required' => 'Kolom Kondisi wajib diisi',
-            'jenis.required' => 'Kolom Jenis wajib diisi',
+            // 'jenis.required' => 'Kolom Jenis wajib diisi',
             'tingkatpengembangan.required' => 'Kolom Tingkat Pengembangan wajib diisi',
             'lokasi.required' => 'Kolom Lokasi wajib diisi',
             'retensi.required' => 'Kolom Retensi wajib diisi',
@@ -107,8 +109,9 @@ class ArsipController extends Controller
         $arsip->klasifikasi_id = $request->klasifikasi_id;
         $arsip->unitkerja_id = $request->unitkerja_id;
         //$arsip->klasifikasi = $request->klasifikasi;
+        $arsip->nosurat = $request->nosurat;
         $arsip->kondisi = $request->kondisi;
-        $arsip->jenis = $request->jenis;
+        // $arsip->jenis = $request->jenis;
         $arsip->media = $request->media;
         $arsip->tingkatpengembangan = $request->tingkatpengembangan;
         // $arsip->lemari = $request->lemari;
@@ -117,7 +120,8 @@ class ArsipController extends Controller
         $arsip->lokasi = $request->lokasi;
         $arsip->retensi = $request->retensi;
         $arsip->akhirRetensi = $request->akhirRetensi;
-        $arsip->tanggal = $request->tanggal;
+        // $arsip->tanggal = $request->tanggal;
+        $arsip->tahun = $request->tahun;
         $arsip->uraian = $request->uraian;
         $arsip->jumlah = $request->jumlah;
         //upload pdf
@@ -147,10 +151,10 @@ class ArsipController extends Controller
         //  $file= new DetailArsip();
         //  $file->namefile = $files;
         //  $file->save();
-
+        if($request->file('file')!= NULL){
         foreach($request->file('file') as $file)
             {
-                $name = date('YmdHi').$file->getClientOriginalName();
+                $name = $file->getClientOriginalName();
                 $file->move(public_path('files'), $name);  
                 //$files[] = $name;  
                 DetailArsip::create([
@@ -159,6 +163,14 @@ class ArsipController extends Controller
                     'file' => $name,
                 ]);
             }
+
+        }
+
+        if($request->file('file')== NULL){
+            DetailArsip::create([
+                'arsip_id' => $arsip_id,
+            ]);
+        }
 
         // foreach($request->get('namefile') as $item=>$value){
 
@@ -201,7 +213,9 @@ class ArsipController extends Controller
     public function edit($id)
     {
         $arsip = Arsip::findorfail($id);
-        return view('arsip.edit',compact('arsip'));
+        $klasifikasi = Klasifikasi::all();
+        $unitkerja = UnitKerja::all();
+        return view('arsip.edit',compact('arsip','klasifikasi','unitkerja'));
     }
 
     /**
@@ -251,10 +265,13 @@ class ArsipController extends Controller
         return Excel::download(new ArsipTemplate,'TemplateArsip.xlsx');
     }
 
+    public function templateArsipFile()
+    {
+        return Excel::download(new ArsipTemplateFile,'TemplateArsipFile.xlsx');
+    }
+
     public function download($file)
     {
-
-
             //dd($file);
         return response()->download(public_path('files/'.$file));
     }

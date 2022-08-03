@@ -22,7 +22,7 @@ class KlasifikasiExport implements FromCollection, WithMapping, WithHeadings
     {
         return [
             $klasifikasi->code,
-            $uklasifikasi->subcode,
+            $klasifikasi->subcode,
             $klasifikasi->klasifikasi,
         ];
 

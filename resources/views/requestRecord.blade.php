@@ -21,6 +21,32 @@
         </div>
     </div>
 
+    @if(auth()->user()->role()->where('nameRole', '=', 'User')->exists())
+    @foreach ($request as $item)
+    @if(Auth::user()->id == $item->user->id )
+    @if($item->tanggalpengembalian > $tanggalhariini && $item->status == 1)
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-ban"></i>Pengembalian Dokumen {{ $item->detail_arsip->file}} !</h4>
+            Harap mengembalikan dokumen yang telah dipinjam, abaikan pesan ini jika anda telah mengembalikannya
+        </div>
+
+        <!-- modal alert pengembalian -->
+        <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        @endif
+        @endif
+        @endforeach
+    @endif
+
     <div class="box-body table-responsive">
         <table id="table"  class="table table-bordered table-striped">
         <thead>
@@ -38,9 +64,12 @@
         </thead>
         <tbody>
             @foreach ($request as $item)
+            @if(auth()->user()->role()->where('nameRole', '=', 'User')->exists())
+            @if(Auth::user()->id == $item->user->id )
             <tr>
                 <td class="text-center">{{ $loop->iteration }}</td>
                 <td>{{ $item->code }}</td>
+                <td>{{ $item->tanggalpengembalian }}</td>
                 <td>{{ $item->user->name }}</td>
                 <td>{{ $item->user->unitkerja->unitkerja }}</td>
                 <td>{{ $item->detail_arsip->arsip->code}}</td>
@@ -72,6 +101,44 @@
                     @endif
                 </td>
             </tr>
+            @endif
+            @else
+            <tr>
+                <td class="text-center">{{ $loop->iteration }}</td>
+                <td>{{ $item->code }}</td>
+                <td>{{ $item->tanggalpengembalian }}</td>
+                <td>{{ $item->user->name }}</td>
+                <td>{{ $item->user->unitkerja->unitkerja }}</td>
+                <td>{{ $item->detail_arsip->arsip->code}}</td>
+                <td>{{ $item->detail_arsip->file}}</td>
+                {{-- <td>{{ $item->arsip->code }}</td> --}}
+                <td>{{ $item->created_at }}</td>
+                <td>
+                    @if($item->status == 1)
+                      <label class="label label-success">Approve</label>
+                    
+                    @elseif($item->status == 0)
+                    <label class="label label-warning">Pending</label>
+                    @elseif($item->status == 2)
+                    <label class="label label-danger">Reject</label>
+                    @endif
+                  </td>
+                <td class="text-center" width="200px">
+                    <a href="{{url('/detailrequest/'.$item->id)}}" class="btn btn-sm btn-success" >
+                        <i class="fa fa-eye"></i> 
+                    </a>
+                    @if(auth()->user()->role()->where('nameRole', '=', 'Admin')->exists())
+                    @if($item->status == 0)
+                    <a href="{{url('/requestsubmission/'.$item->id)}}" class="btn btn-sm btn-primary">
+                        <i class="fa fa-check-square-o"></i>
+                    </a>
+                    @else
+                        <a type="button" class="btn btn-sm btn-primary status" disabled><i class="fa fa-check-square-o"></i> </a>
+                    @endif
+                    @endif
+                </td>
+            </tr>
+            @endif
             @endforeach
            
         </tbody> 

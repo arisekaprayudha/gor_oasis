@@ -25,7 +25,7 @@ class UserSeederTable extends Seeder
                 'id'             => 2,
                 'name'           => 'Azka',
                 'unitkerja_id'           => '2',
-                'nip'          => '1001001001',
+                'nip'          => '064001900026',
                 'password'       => '$2y$10$rfopfbtFn.yUxbMBwN6RjOEtoNGn6lyqxzppqM6WaJAEw/Z.MuwDW',
                 'two_factor_secret'        => '',
                 'two_factor_recovery_codes' => '',

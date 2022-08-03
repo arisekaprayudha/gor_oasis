@@ -19,6 +19,13 @@
         </div>
 
         <div class="form-group row mt-2">
+            <label class="col-sm-3 control-label">Batas Akhir Pengembalian :</label>
+            <div class="col-sm-8">
+            <input class="form-control select2" name="nomerPelaksana" value="{{$pengajuaan->tanggalpengembalian}}" style="width: 100%;" disabled>
+            </div>
+        </div>
+
+        <div class="form-group row mt-2">
             <label class="col-sm-3 control-label">Nama Peminjam :</label>
             <div class="col-sm-8">
             <input class="form-control select2" name="nomerPelaksana" value="{{$pengajuaan->user->name}}" style="width: 100%;" disabled>
@@ -42,6 +49,13 @@
                 @else
                 <input class="form-control select2" type="text" value="Reject" disabled>
                 @endif
+            </div>
+        </div>
+
+        <div class="form-group row mt-2">
+            <label class="col-sm-3 control-label">Tujuan Peminjaman :</label>
+            <div class="col-sm-8">
+            <textarea class="form-control select2" name="tujuan" value="{{$pengajuaan->tujuan}}" style="width: 100%;" disabled>{{$pengajuaan->tujuan}}</textarea>
             </div>
         </div>
 

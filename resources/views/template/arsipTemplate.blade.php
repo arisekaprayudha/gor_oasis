@@ -1,21 +1,19 @@
 <table>
     <thead>
     <tr>
-        <th>No Kode Pelaksaan</th>
-        <th>Index</th>
-        <th>kode Klasifikasi</th>
-        <th>Unit Kerja</th>
-        <th>Uraian</th>
-        <th>Tahun</th>
+        <th>No Kode Pelaksana</th>
+        <th>ID Index</th>
+        <th>ID Klasifikasi</th>
+        <th>ID Unit Kerja</th>
         <th>Tingkat Perkembangan</th>
+        <th>Uraian</th>
         <th>Media</th>
         <th>Kodisi</th>
+        <th>Lokasi</th>
         <th>Jumlah</th>
-        <th>Lokasi Simpan</th>
-        <th>Link</th>
         <th>Retensi</th>
         <th>Akhir Retensi</th>
-        <th>Tanggal Deskripsi</th>
+        <th>Tahun</th>
     </tr>
     </thead>
 </table> 

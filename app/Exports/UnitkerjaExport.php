@@ -31,7 +31,7 @@ class UnitkerjaExport implements FromCollection, WithMapping, WithHeadings
     public function headings(): array{
         return [
             'CODE',
-            'SUBCODE',
+            //'SUBCODE',
             'UNIT KERJA',
         ];
     }

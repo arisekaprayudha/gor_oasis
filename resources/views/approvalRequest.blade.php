@@ -32,6 +32,13 @@
             </div>
         </div>
 
+        <div class="form-group row mt-2">
+            <label class="col-sm-3 control-label">Tujuan Peminjaman :</label>
+            <div class="col-sm-8">
+            <textarea class="form-control select2" name="tujuan" value="{{$pengajuaan->tujuan}}" style="width: 100%;" disabled>{{$pengajuaan->tujuan}}</textarea>
+            </div>
+        </div>
+
         <form class="form-horizontal" method="post" role="form" action="/pengajuaan/{{ $pengajuaan->id }}">
             @method('PUT')
             @csrf
@@ -55,11 +62,22 @@
     
                 <div id="ifreject" style="display:none">
                     <div class="form-group row mt-2">
-                    <label class="col-sm-3 control-label">Description :</label>
+                    <label class="col-sm-3 control-label">Alasan :</label>
                     <div class="col-sm-8">
-                        <textarea class="form-control" name="description" rows="3" placeholder="Catatan..."></textarea>
+                        <textarea class="form-control" name="alasan" rows="3" placeholder="Alasan..."></textarea>
                     </div>
                 </div>
+                </div>
+
+                <div class="form-group row mt-2{{$errors->has('description') ? ' has-error' : ' '}}">
+                    <label class="col-sm-3 control-label">Catatan : </label>
+                    <div class="col-sm-8">
+                    <textarea class="form-control" name="description" rows="3" placeholder="Catatan...">{{ old('description') }}</textarea>
+                    @if ($errors->has('descriptionn'))
+                    <span class="help-block">
+                    <strong>{{ $errors->first('description') }}</strong>
+                    @endif
+                    </div>
                 </div>
     
                 <div class="modal-footer">

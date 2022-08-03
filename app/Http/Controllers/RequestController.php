@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DetailArsip;
 use App\Models\Report;
+use Carbon\Carbon;
 use App\Models\Pengajuaan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -22,8 +23,9 @@ class RequestController extends Controller
     {
         $request = Pengajuaan::all();
         //dd($request);
+        $tanggalhariini =  Carbon::now();
         $request = Pengajuaan::orderBy('created_at', 'DESC')->get();
-         return view('requestRecord',compact('request'));
+         return view('requestRecord',compact('request','tanggalhariini'));
     }
 
     /**
@@ -58,6 +60,7 @@ class RequestController extends Controller
         //$request->request->add(['file_id' => $file_id]);
         $pengajuaan->file_id = $request->file_id;
         $pengajuaan->tujuan = $request->tujuan;
+        $pengajuaan->tanggalpengembalian = Carbon::now()->addDays(7);
         $pengajuaan->user_id = $request->user()->id;
         $pengajuaan->save();
 
@@ -73,7 +76,7 @@ class RequestController extends Controller
         //dd($pengajuaan);
 
         //return redirect('/arsip')->with('succes','success request arsip');
-        return redirect('/requestrecord')->with('succes','success request arsip');
+        return redirect('/dashboard')->with('succes','success request arsip');
     }
 
     public function ajaxRequestPost(Request $request)

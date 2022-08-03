@@ -2,6 +2,7 @@
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ApprovalController;
+use App\Http\Controllers\DetailArsipController;
 use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\KlasifikasiController;
@@ -43,10 +44,10 @@ Route::get('/ajaxRequest', [RequestController::class, 'ajaxRequestPost'])->name(
 //detail pengajuan peminjaman di user
 Route::get('/peminjaman/{id}', [RequestController::class, 'create']);
 
-//home page tampilan pendaftaran training
-Route::get('/dashboard',[HomeController::class,'index'])->name('home');
+//home page tampilan awal
+// Route::get('/dashboard',[HomeController::class,'index'])->name('home');
 
-Route::get('/requestrecord', [RequestController::class,'index']);
+Route::get('/dashboard', [RequestController::class,'index']);
 
 //update approval arsip
 Route::put('/pengajuaan/{id}', [RequestController::class, 'update']);
@@ -59,7 +60,9 @@ Route::post('/arsip/store', [RequestController::class, 'store']);
 //Route::get('/registsubmission/{id}', [RegistController::class,'registShow']);
 Route::get('/detailrequest/{id}', [RequestController::class,'show']);
 
-Route::get('/search', [SearchController::class, 'create']);
+// Route::get('/search', [SearchController::class, 'create']);
+
+Route::get('/search', [SearchController::class, 'store']);
 
     Route::get('/arsip', [ArsipController::class,'index']);
     Route::post('/arsip', [ArsipController::class,'store']);
@@ -71,6 +74,19 @@ Route::get('/search', [SearchController::class, 'create']);
     Route::get('/exportArsip',[ArsipController::class,'arsipExport']);
     Route::post('/importArsip',[ArsipController::class,'arsipImport'])->name('arsip.import');
     Route::get('/templateArsip',[ArsipController::class,'templateArsip'])->name('arsip.template');
+    Route::get('/templateArsipFile',[ArsipController::class,'templateArsipFile'])->name('arsipfile.template');
+    //belum selesai
+    Route::post('/importArsipFile',[ArsipController::class,'arsipImportFile'])->name('arsipfile.import');
+    //addfilearsip
+    Route::get('arsip/file/{id}/create', [DetailArsipController::class,'create'])->name('detailarsip.create');
+    //delete file
+    Route::delete('arsip/file/{id}', [DetailArsipController::class,'destroy']);
+    //store file
+    Route::post('arsip/file/{id}', [DetailArsipController::class, 'store']);
+    //edit file
+    Route::get('arsip/file/{id}/{arsip_id}/edit', [DetailArsipController::class,'edit']);
+    //update file
+    Route::put('arsip/file/{id}/{arsip_id}', [DetailArsipController::class, 'update']);
 
     //download file
     Route::get('/arsip/download/{file}', [ArsipController::class, 'download'])->name('arsip-download');

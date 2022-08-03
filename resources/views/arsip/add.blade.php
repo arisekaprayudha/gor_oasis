@@ -33,6 +33,33 @@
                 </div>
             </div>  --}}
 
+            <div class="form-group row mt-2 {{$errors->has('nosurat') ? ' has-error' : ' '}}">
+                <label class="col-sm-3 control-label">No Surat :</label>
+                <div class="col-sm-8">
+                    <input type="text" name="nosurat" value="{{ old('nosurat') }}"  class="form-control" id="nosurat" placeholder="No Surat">
+                @if ($errors->has('nosurat'))
+                <span class="help-block">
+                <strong>{{ $errors->first('nosurat') }}</strong>
+                @endif
+                </div>
+            </div>
+
+            <div class="form-group row mt-2 {{$errors->has('unitkerja_id') ? ' has-error' : ' '}}">
+                <label class="col-sm-3 control-label">Unit Kerja :</label>
+                <div class="col-sm-8">
+                    <select class="form-control select2" value="{{ old('unitkerja_id') }}"  id="unitkerja_id" name="unitkerja_id" placeholder="Select Unit Kerja" style="width: 100%;">
+                        <option value="">Select Unit Kerja</option>
+                        @foreach($unitkerja as $item)
+                        <option value="{{ $item->id }}" {{old('unitkerja_id') == $item->id ? "selected" : ""}}>{{ $item->unitkerja }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                @if ($errors->has('unitkerja_id'))
+                <span class="help-block">
+                <strong>{{ $errors->first('unitkerja_id') }}</strong>
+                @endif
+            </div>
+
             @if(auth()->user()->role()->where('nameRole', '=', 'Admin')->exists())
             <div class="form-group row mt-2 {{$errors->has('klasifikasi_id') ? ' has-error' : ' '}}">
                 <label class="col-sm-3 control-label">Index :</label>
@@ -51,23 +78,7 @@
             </div>
             @endif
 
-            <div class="form-group row mt-2 {{$errors->has('unitkerja_id') ? ' has-error' : ' '}}">
-                <label class="col-sm-3 control-label">Unit Kerja :</label>
-                <div class="col-sm-8">
-                    <select class="form-control select2" value="{{ old('unitkerja_id') }}"  id="unitkerja_id" name="unitkerja_id" placeholder="Select Unit Kerja" style="width: 100%;">
-                        <option value="">Select Unit Kerja</option>
-                        @foreach($unitkerja as $item)
-                        <option value="{{ $item->id }}" {{old('unitkerja_id') == $item->id ? "selected" : ""}}>{{ $item->unitkerja }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                @if ($errors->has('unitkerja_id'))
-                <span class="help-block">
-                <strong>{{ $errors->first('unitkerja_id') }}</strong>
-                @endif
-            </div>
-
-            <div class="form-group row mt-2 {{$errors->has('jenis') ? ' has-error' : ' '}}">
+            {{-- <div class="form-group row mt-2 {{$errors->has('jenis') ? ' has-error' : ' '}}">
                 <label class="col-sm-3 control-label">Jenis :</label>
                 <div class="col-sm-8">
                     <div class="radio">
@@ -99,7 +110,7 @@
                 <strong>{{ $errors->first('jenis') }}</strong>
                 @endif
                 </div>
-            </div>
+            </div> --}}
 
             {{-- <div class="form-group row mt-2 {{$errors->has('unitkerja') ? ' has-error' : ' '}}">
                 <label class="col-sm-3 control-label">Index :</label>
@@ -137,6 +148,8 @@
                 </div>
             </div>
 
+            
+
             <div class="form-group row mt-2 {{$errors->has('kondisi') ? ' has-error' : ' '}}">
                 <label class="col-sm-3 control-label">Kondisi :</label>
                 <div class="col-sm-8">
@@ -159,7 +172,7 @@
                     <select class="form-control select2" id="media" name="media" placeholder="Media" style="width: 100%;">
                         <option value="">Media</option>
                         <option value="Kertas" {{old('kertas') == "kertas" ? "selected" : ""}}>Kertas</option>
-                        <option value="Flashdisk" {{old('flashdisk') == "flashdisk" ? "selected" : ""}}>Flashdisk</option>
+                        {{-- <option value="Flashdisk" {{old('flashdisk') == "flashdisk" ? "selected" : ""}}>Flashdisk</option> --}}
                         <option value="CD" {{old('cd') == "cd" ? "selected" : ""}}>CD</option>
                     </select>
                     @if ($errors->has('media'))
@@ -175,8 +188,8 @@
                 <div class="col-sm-8">
                     <select class="form-control select2" id="tingkatpengembangan" name="tingkatpengembangan" placeholder="Tingkat Pengembangan" style="width: 100%;">
                         <option value="">Tingkat Pengembangan</option>
-                        <option value="ASLI" {{old('asli') == "asli" ? "selected" : ""}}>ASLI</option>
-                        <option value="Copy" {{old('copy') == "copy" ? "selected" : ""}}>Copy</option>
+                        <option value="ASLI" {{old('Asli') == "asli" ? "selected" : ""}}>ASLI</option>
+                        <option value="Fotocopy" {{old('Fotocopy') == "Fotocopy" ? "selected" : ""}}>Fotocopy</option>
                     </select>
                     @if ($errors->has('tingkatpengembangan'))
                     <span class="help-block">
@@ -211,7 +224,7 @@
             </div>
 
 
-            <div class="form-group row mt-2 {{$errors->has('tanggal') ? ' has-error' : ' '}}">
+            {{-- <div class="form-group row mt-2 {{$errors->has('tanggal') ? ' has-error' : ' '}}">
                 <label class="col-sm-3 control-label">Tanggal :</label>
                 <div class="col-sm-8">
                     <input type="date" name="tanggal" value="{{ old('tanggal') }}"  class="form-control" id="unitkerja" placeholder="Unit Kerja">
@@ -220,7 +233,7 @@
                 <strong>{{ $errors->first('tanggal') }}</strong>
                 @endif
                 </div>
-            </div>
+            </div> --}}
             
             {{-- <div class="form-group row mt-2{{$errors->has('file') ? ' has-error' : ' '}}">
                 <label class="col-sm-3 control-label">File : </label>
@@ -244,10 +257,21 @@
                 </div>
             </div>
 
+            <div class="form-group row mt-2 {{$errors->has('tahun') ? ' has-error' : ' '}}">
+                <label class="col-sm-3 control-label">Tahun :</label>
+                <div class="col-sm-8">
+                    <input type="text" name="tahun" value="{{ old('tahun') }}"  class="form-control" id="tahun" placeholder="Tahun">
+                @if ($errors->has('tahun'))
+                <span class="help-block">
+                <strong>{{ $errors->first('tahun') }}</strong>
+                @endif
+                </div>
+            </div>
+
            <div class="form-group row mt-2{{$errors->has('jumlah') ? ' has-error' : ' '}}">
                 <label class="col-sm-3 control-label">Jumlah : </label>
                 <div class="col-sm-8">
-                    <input type="number" class="form-control" name="jumlah" placeholder="Jumlah">
+                    <input type="number" class="form-control" value="{{ old('jumlah') }}" name="jumlah" placeholder="Jumlah">
                     @if ($errors->has('jumlah'))
                     <span class="help-block">
                     <strong>{{ $errors->first('jumlah') }}</strong>
@@ -258,7 +282,7 @@
             <div class="form-group row mt-2{{$errors->has('retensi') ? ' has-error' : ' '}}">
                 <label class="col-sm-3 control-label">Retensi : </label>
                 <div class="col-sm-8">
-                    <input type="number" class="form-control" name="retensi" placeholder="Retensi">
+                    <input type="number" class="form-control" value="{{ old('retensi') }}" name="retensi" placeholder="Retensi">
                     @if ($errors->has('retensi'))
                     <span class="help-block">
                     <strong>{{ $errors->first('retensi') }}</strong>
@@ -311,7 +335,7 @@
 
             <div class="pull-right">
             <div class="box-footer">
-            <a href="/room" type="button" class="btn btn-default" data-dismiss="modal">Cancel</a>
+            <a href="/arsip" type="button" class="btn btn-default" data-dismiss="modal">Cancel</a>
             <button type="submit" class="btn btn-primary">Submit</button>
             </div>
             </div>

@@ -130,13 +130,13 @@ class KlasifikasiController extends Controller
         return Excel::download(new KlasifikasiExport,'Klasifikasi.xlsx');
     }
 
-    public function unitkerjaImport(Request $request)
+    public function klasifikasiImport(Request $request)
     {
         $file = $request->file('file');
         $nameFile = $file->getClientOriginalName();
-        $file->move('dataArsip', $nameFile);
+        $file->move('dataKlasifikasi', $nameFile);
 
-        Excel::import(new KlasifikasiImport, public_path('/dataklasifikasi/'.$nameFile));
+        Excel::import(new KlasifikasiImport, public_path('/dataKlasifikasi/'.$nameFile));
         return redirect('/klasifikasi');
     }
 

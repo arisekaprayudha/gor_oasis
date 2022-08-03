@@ -20,18 +20,7 @@ class UnitKerjaImport implements ToModel, WithHeadingRow
     {
         return new UnitKerja([
             'code' => $row['Code'],
-            'index_id' => $row['Index'],
-            'klasifikasi' => $row['ID Klasifikasi'],
-            'unitkerja_id' => $row['ID Unit Kerja'],
-            'uraian' => $row['Uraian'],
-            'tanggal' => $row['Tanggal'],
-            'tingkatpengembangan' => $row['Tingkat Pengembangan'],
-            'media' => $row['Media'],
-            'kondisi' => $row['Kondisi'],
-            'jumlah' => $row['Jumlah'],
-            'lokasi' => $row['Lokasi'],
-            'retensi' => $row['Retensi'],
-            'akhirRetensi' => $row['Akhir Retensi'],
+            'unitkerja' => $row['Unit Kerja'],
         ]);
     }
 }

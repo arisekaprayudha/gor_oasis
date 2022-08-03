@@ -7,6 +7,7 @@ use App\Models\Arsip;
 use App\Models\Klasifikasi;
 use App\Models\UnitKerja;
 use Illuminate\Http\Request;
+use Auth;
 
 class SearchController extends Controller
 {
@@ -41,7 +42,31 @@ class SearchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        //dd($request);
+        try {
+            $getklasifikasi = $request->klasifikasi_id;
+            $getunitkerja = $request->unitkerja_id;
+
+            $index = Index::all();
+            if($getklasifikasi == NULL){
+                $arsip = Arsip::where('unitkerja_id','=',$getunitkerja)->get();
+            }elseif($getunitkerja == NULL){
+                $arsip = Arsip::where('index_id','=',$getklasifikasi)->get();
+            }else{
+                $arsip = Arsip::where('unitkerja_id','=',$getunitkerja)->where('index_id','=',$getklasifikasi)->get();
+            }
+
+            $tahun = Arsip::distinct()->get(['tahun']);
+            $klasifikasi = Klasifikasi::all();
+            $unitkerja = UnitKerja::all();
+            $data_unitkerja = Arsip::where('klasifikasi_id','=',$getklasifikasi)->where('unitkerja_id', Auth::user()->unitkerja_id)->get();
+            //dd($data_unitkerja);
+            return view('arsip.index',compact('tahun','klasifikasi','index','arsip','unitkerja','data_unitkerja'));
+
+        }catch (\Exception $e){
+            \Session::flash('gagal',$e->getMessage());
+        }
     }
 
     /**

@@ -20,6 +20,8 @@ class CreatePengajuaansTable extends Migration
             //$table->unsignedInteger('arsip_id')->nullable();
             $table->unsignedInteger('file_id')->nullable();
             $table->boolean('status')->default(0)->nullable();
+            $table->date('tanggalpengembalian'); 
+            $table->longText('alasan')->nullable();
             $table->longText('tujuan')->nullable();
             $table->longText('description')->nullable();
             $table->timestamps();
