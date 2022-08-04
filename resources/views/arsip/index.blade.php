@@ -49,7 +49,7 @@
     </div>
 
     <div class="box-body table-responsive">
-        <p>Filter Arsip</p>
+        {{-- <p>Filter Arsip</p>
         <div class="row">
             <div class="col-md-2">
                         <select data-column="3" class="form-control select2 filter-select" id="filter-unitkerja">
@@ -60,30 +60,22 @@
                         </select>
             </div>
             <div class="col-md-2">
-                {{-- <div class="col-sm-8"> --}}
                     <select data-column="2" class="form-control select2 filter-select" id="filter-klasifikasi">
                         <option value="">Klasifikasi</option>
                         @foreach($index as $item)
                         <option value="{{ $item->id }}" {{old('klasifikasi_id') == $item->id ? "selected" : ""}}>{{ $item->subcode }}</option>
                         @endforeach
                     </select>
-                {{-- </div> --}}
             </div>
             <div class="col-md-2">
-                {{-- <div class="col-sm-8"> --}}
                     <select data-column="2" class="form-control select2 filter-select" id="filter-kondisi">
                         <option value="">Tahun</option>
                         @foreach($tahun as $item)
                         <option value="{{ $item->tahun }}" {{old('tahun') == $item->tahun ? "selected" : ""}}>{{ $item->tahun }}</option>
                         @endforeach
-                        {{-- <option value="Dokumen" {{old('dokumen') == "dokumen" ? "selected" : ""}}>Dokumen</option>
-                        <option value="Surat Masuk" {{old('suratmasuk') == "suratmasuk" ? "selected" : ""}}>Surat Masuk</option>
-                        <option value="Surat Keluar" {{old('suratkeluar') == "suratkeluar" ? "selected" : ""}}>Surat Keluar</option>
-                        <option value="Nota Dinas" {{old('notadinas') == "notadinas" ? "selected" : ""}}>Surat Masuk</option> --}}
                     </select>
-                {{-- </div> --}}
             </div>
-        </div>
+        </div> --}}
         <div class="divider"></div>
 
         <table id="table"  class="table table-bordered table-striped">
@@ -226,7 +218,7 @@
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
           <h4 class="modal-title" id="myModalLabel">Import Arsip</h4>
         </div>
-        <form action="#" method="post" enctype="multipart/form-data">
+        <form action="{{route('arsip.import')}}" method="post" enctype="multipart/form-data">
             <div class="modal-body">
                 @csrf
                 <p><strong>Templates can be downloaded <a href="{{route('arsipfile.template')}}">here</a></strong></p>

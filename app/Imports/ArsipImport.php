@@ -19,9 +19,10 @@ class ArsipImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new Arsip([
-            'code' => $row['No Kode Pelaksan'],
+            'code' => $row['No Kode Pelaksana'],
             'index_id' => $row['ID Index'],
             'klasifikasi_id' => $row['ID Klasifikasi'],
+            'nosurat' => $row['No Surat'],
             'unitkerja_id' => $row['ID Unit Kerja'],
             'tingkatpengembangan' => $row['Tingkat Pengembangan'],
             'uraian' => $row['Uraian'],

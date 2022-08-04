@@ -28,7 +28,7 @@
     <div class="col-md-6">
         <div class="card mx-4">
             <div class="card-body p-4">
-                <img class="mb-4" src="images/logo.png" alt="" width="405" height="107">
+                <img class="mb-4" src="images/login.png" alt="" width="405" height="107">
                 <h1 class="text-center">ARSIP JMTM</h1> <br/>
 
                 {{-- <p class="text-center fs-4">ARSIP JMTM</p> --}}

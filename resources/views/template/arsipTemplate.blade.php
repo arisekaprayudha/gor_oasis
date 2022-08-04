@@ -4,11 +4,12 @@
         <th>No Kode Pelaksana</th>
         <th>ID Index</th>
         <th>ID Klasifikasi</th>
+        <th>No Surat</th>
         <th>ID Unit Kerja</th>
-        <th>Tingkat Perkembangan</th>
+        <th>Tingkat Pengembangan</th>
         <th>Uraian</th>
         <th>Media</th>
-        <th>Kodisi</th>
+        <th>Kondisi</th>
         <th>Lokasi</th>
         <th>Jumlah</th>
         <th>Retensi</th>

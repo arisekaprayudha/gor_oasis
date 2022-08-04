@@ -1,267 +1,193 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.98.0">
-    <title>Sticky Footer Navbar Template · Bootstrap v5.2</title>
+ <head>
+ <!-- Required meta tags -->
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/carousel/">
-
-
-<link href="{{asset('template/css/bootstrap.min.css')}}" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-
-    <!-- Favicons -->
-<link rel="apple-touch-icon" href="/docs/5.2/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="manifest" href="/docs/5.2/assets/img/favicons/manifest.json">
-<link rel="mask-icon" href="/docs/5.2/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
-<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon.ico">
-<meta name="theme-color" content="#712cf9">
-
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .b-example-divider {
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-    </style>
-
-    
-    <!-- Custom styles for this template -->
-    <link href="{{asset('template/carousel.css')}}" rel="stylesheet">
-  </head>
-  <body>
-    
-<header>
-  <!-- Fixed navbar -->
-  <nav class="navbar  fixed-top navbar-expand-md py-2 bg-light border-bottom">
-    
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">JMTM</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav nav-pills">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Beranda</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/search">Pencarian</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled">Tentang</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Direktori
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-        </ul>
+ <!-- CoreUI CSS -->
+ <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css" crossorigin="anonymous">
+ <link href="vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
+ <title>Arsip JMTM</title>
+ </head>
+ <body class="c-app">
+ <div class="wrapper d-flex flex-column min-vh-100 bg-light">
+  <header>
+    <!-- Fixed navbar -->
+    <nav class="navbar  fixed-top navbar-expand-md py-2 bg-light border-bottom">
+      
+      <div class="container-fluid">
+          <a class="navbar-brand" href="#"><img src="images/logo.png" alt=""></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav nav-pills">
+              <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="#">Beranda</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/login">Pencarian</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link disabled">Tentang</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Direktori
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+  <div id="carouselExampleCaptions" class="carousel slide" data-coreui-ride="false">
+    <div class="carousel-indicators">
+      <button type="button" data-coreui-target="#carouselExampleCaptions" data-coreui-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-coreui-target="#carouselExampleCaptions" data-coreui-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-coreui-target="#carouselExampleCaptions" data-coreui-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="images/arsip1.png" class="d-block w-100" alt="First slide">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>Another example headline.</h1>
+          <p>Some representative placeholder content for the second slide of the carousel.</p>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-lg btn-primary" type="submit">cari</button>
+            </form>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="images/arsip2.png" class="d-block w-100" alt="First slide">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>Another example headline.</h1>
+          <p>Some representative placeholder content for the second slide of the carousel.</p>
+            <form class="d-flex" role="search">
+              {{-- <input type="search" class="form-control" id="exampleFormControlInput1" placeholder="Search"> --}}
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-lg btn-primary" type="submit">cari</button>
+            </form>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="images/arsip3.png" class="d-block w-100" alt="First slide">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>Another example headline.</h1>
+          <p>Some representative placeholder content for the second slide of the carousel.</p>
+            <form class="d-flex" role="search">
+              {{-- <input type="search" class="form-control" id="exampleFormControlInput1" placeholder="Search"> --}}
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-lg btn-primary" type="submit">cari</button>
+            </form>
+        </div>
       </div>
     </div>
-  </nav>
-</header>
+    <button class="carousel-control-prev" type="button" data-coreui-target="#carouselExampleCaptions" data-coreui-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-coreui-target="#carouselExampleCaptions" data-coreui-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 
-<!-- Begin page content -->
-<main>
-    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100 h-100" src="https://jmtm.co.id/assets/img_jmtm/truk.jpg" alt="First slide">
-    
-            <div class="container">
-                <div class="carousel-caption">
-                  <h1>Another example headline.</h1>
-                  <p>Some representative placeholder content for the second slide of the carousel.</p>
-                  <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-lg btn-primary" type="submit">cari</button>
-                  </form>
-                </div>
+  <br>
+
+  <div class="panel">
+    <div id="chartUnitkerja"></div>
+    <div id="chartUnitkerja"></div>
+  </div>
+
+  <br>
+  <br>
+  <br>
+
+  <div class="body flex-grow-1 px-3">
+    <div class="container-lg">
+      <div class="row">
+        <div class="col-sm-6 col-lg-3">
+          <div class="card mb-4 text-white bg-primary">
+            <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+              <div>
+                <div class="fs-4 fw-semibold">26K <span class="fs-6 fw-normal">(-12.4%
+                    <svg class="icon">
+                      <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-bottom"></use>
+                    </svg>)</span></div>
+                <div>Users</div>
               </div>
             </div>
-            <div class="carousel-item">
-              <img class="d-block w-100 h-100" src="https://jmtm.co.id/assets/img_jmtm/truk.jpg" alt="First slide">
-      
-
-            <div class="container">
-              <div class="carousel-caption">
-                <h1>Another example headline.</h1>
-                <p>Some representative placeholder content for the second slide of the carousel.</p>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-lg btn-primary" type="submit">cari</button>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100 h-100" src="https://jmtm.co.id/assets/img_jmtm/truk.jpg" alt="First slide">
-
-            <div class="container">
-              <div class="carousel-caption">
-                <h1>Another example headline.</h1>
-                <p>Some representative placeholder content for the second slide of the carousel.</p>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-lg btn-primary" type="submit">cari</button>
-                </form>
-              </div>
+            <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
+              <canvas class="chart" id="card-chart1" height="70"></canvas>
             </div>
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+        <!-- /.col-->
+        <div class="col-sm-6 col-lg-3">
+          <div class="card mb-4 text-white bg-info">
+            <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+              <div>
+                <div class="fs-4 fw-semibold">$6.200 <span class="fs-6 fw-normal">(40.9%
+                    <svg class="icon">
+                      <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-top"></use>
+                    </svg>)</span></div>
+                <div>Income</div>
+              </div>
+            </div>
+            <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
+              <canvas class="chart" id="card-chart2" height="70"></canvas>
+            </div>
+          </div>
+        </div>
+        <!-- /.col-->
+        <div class="col-sm-6 col-lg-3">
+          <div class="card mb-4 text-white bg-warning">
+            <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+              <div>
+                <div class="fs-4 fw-semibold">2.49% <span class="fs-6 fw-normal">(84.7%
+                    <svg class="icon">
+                      <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-top"></use>
+                    </svg>)</span></div>
+                <div>Conversion Rate</div>
+              </div>
+            </div>
+            <div class="c-chart-wrapper mt-3" style="height:70px;">
+              <canvas class="chart" id="card-chart3" height="70"></canvas>
+            </div>
+          </div>
+        </div>
+        <!-- /.col-->
+        <div class="col-sm-6 col-lg-3">
+          <div class="card mb-4 text-white bg-danger">
+            <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+              <div>
+                <div class="fs-4 fw-semibold">44K <span class="fs-6 fw-normal">(-23.6%
+                    <svg class="icon">
+                      <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-bottom"></use>
+                    </svg>)</span></div>
+                <div>Sessions</div>
+              </div>
+            </div>
+            <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
+              <canvas class="chart" id="card-chart4" height="70"></canvas>
+            </div>
+          </div>
+        </div>
+        <!-- /.col-->
       </div>
-    
-      {{-- piechart --}}
-      <div class="card-body">
-        <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-      </div>
-    
-      <!-- Marketing messaging and featurettes
-      ================================================== -->
-      <!-- Wrap the rest of the page in another container to center all the content. -->
-    
-      <div class="container marketing">
-    
-        <!-- Three columns of text below the carousel -->
-        <div class="row">
-          <div class="col-lg-4">
-            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-    
-            <h2 class="fw-normal">Heading</h2>
-            <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-          </div><!-- /.col-lg-4 -->
-          <div class="col-lg-4">
-            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-    
-            <h2 class="fw-normal">Heading</h2>
-            <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-          </div><!-- /.col-lg-4 -->
-          <div class="col-lg-4">
-            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-    
-            <h2 class="fw-normal">Heading</h2>
-            <p>And lastly this, the third column of representative placeholder content.</p>
-            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-          </div><!-- /.col-lg-4 -->
-        </div><!-- /.row -->
+    </div>
+  </div>  
 
-    </div><!-- /.container -->
-
-</main>
-
-<div class="post">
-  <div class="user-block">
-  <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-  <span class="username">
-  <a href="#">Jonathan Burke Jr.</a>
-  <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-  </span>
-  <span class="description">Shared publicly - 7:30 PM today</span>
-  </div>
-  
-  <p>
-  Lorem ipsum represents a long-held tradition for designers,
-  typographers and the like. Some people hate it and argue for
-  its demise, but others ignore the hate as they create awesome
-  tools to help create filler text for everyone from bacon lovers
-  to Charlie Sheen fans.
-  </p>
-  <ul class="list-inline">
-  <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-  <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-  </li>
-  <li class="pull-right">
-  <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-  (5)</a></li>
-  </ul>
-  <input class="form-control input-sm" type="text" placeholder="Type a comment">
-  </div>
-  
-  
-  <div class="post clearfix">
-  <div class="user-block">
-  <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
-  <span class="username">
-  <a href="#">Sarah Ross</a>
-  <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-  </span>
-  <span class="description">Sent you a message - 3 days ago</span>
-  </div>
-
-<div class="container">
     <footer class="row row-cols-5 py-5 my-5 border-top">
       <div class="col">
         <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
@@ -270,12 +196,8 @@
         <img src=# alt="" class="footer-logo">
       </div>
   
-      <div class="col">
-  
-      </div>
-  
-      <div class="col">
-        <h5>Kantor Pusat</h5>
+      <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+        <h5 class="text-uppercase fw-bold mb-4">Kantor Pusat</h5>
         <p>Gedung C Graha Service Provider, Lantai 1<br>Kantor Pusat PT Jasa Marga (Persero) Tbk.<br>Plaza Tol Taman Mini Indonesia Indah</p>
         <abbr title="Phone Number"></abbr>Jakarta 13550<br>
         <abbr title="Phone Number"></abbr>Telp : 021 – 2983 5858<br>
@@ -293,42 +215,72 @@
           <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
         </ul>
       </div>
-  
-      <div class="col">
-        <h5>Section</h5>
-        <ul class="nav flex-column">
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
-        </ul>
-      </div>
     </footer>
-  </div>
+</main>
+ <!-- Optional JavaScript -->
+ <!-- Popper.js first, then CoreUI JS -->
+ <script src="https://unpkg.com/@popperjs/core@2"></script>
+ <script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
+ <script src="https://code.highcharts.com/highcharts.js"></script>
+ <script>
+ // Make monochrome colors
+var pieColors = (function () {
+    var colors = [],
+        base = Highcharts.getOptions().colors[0],
+        i;
 
-
-    <script src="{{asset('template/js/bootstrap.bundle.min.js')}}" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-
-    <script>
-      //pie
-  var ctxP = document.getElementById("pieChart").getContext('2d');
-  var myPieChart = new Chart(ctxP, {
-    type: 'pie',
-    data: {
-      labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
-      datasets: [{
-        data: [300, 50, 100, 40, 120],
-        backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-        hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
-      }]
-    },
-    options: {
-      responsive: true
+    for (i = 0; i < 10; i += 1) {
+        // Start out with a darkened base color (negative brighten), and end
+        // up with a much brighter color
+        colors.push(Highcharts.color(base).brighten((i - 3) / 7).get());
     }
-  });
-    </script>
+    return colors;
+}());
 
-
-  </body>
+// Build the chart
+Highcharts.chart('chartUnitkerja', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Data Arsip 2019'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            colors: pieColors,
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b><br>{point.percentage:.1f} %',
+                distance: -50,
+                filter: {
+                    property: 'percentage',
+                    operator: '>',
+                    value: 4
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Percentage',
+        data: [
+            { name: 'Direksi', y: 61.41 }
+        ]
+    }]
+});
+ </script> 
+</body>
 </html>
+

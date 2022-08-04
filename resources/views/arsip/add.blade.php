@@ -189,6 +189,7 @@
                     <select class="form-control select2" id="tingkatpengembangan" name="tingkatpengembangan" placeholder="Tingkat Pengembangan" style="width: 100%;">
                         <option value="">Tingkat Pengembangan</option>
                         <option value="ASLI" {{old('Asli') == "asli" ? "selected" : ""}}>ASLI</option>
+                        <option value="Copy" {{old('Copy') == "asli" ? "selected" : ""}}>Copy</option>
                         <option value="Fotocopy" {{old('Fotocopy') == "Fotocopy" ? "selected" : ""}}>Fotocopy</option>
                     </select>
                     @if ($errors->has('tingkatpengembangan'))

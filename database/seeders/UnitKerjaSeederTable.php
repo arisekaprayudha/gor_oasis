@@ -34,12 +34,12 @@ class UnitKerjaSeederTable extends Seeder
             [
                 'id'             => 5,
                 'code'             => 'UNT-000005',
-                'unitkerja'           => 'MAINTENANCE SERVICE AREA',
+                'unitkerja'           => 'OPERATION 2',
             ],
             [
                 'id'             => 6,
                 'code'             => 'UNT-000006',
-                'unitkerja'           => 'OPERATION 2',
+                'unitkerja'           => 'OPERATION 3',
             ],
             [
                 'id'             => 7,
@@ -49,32 +49,32 @@ class UnitKerjaSeederTable extends Seeder
             [
                 'id'             => 8,
                 'code'             => 'UNT-000008',
-                'unitkerja'           => 'OPERATION 3',
+                'unitkerja'           => 'CORPORATE PLANNING,FINANCE, TAX & ACCOUNTING',
             ],
             [
                 'id'             => 9,
                 'code'             => 'UNT-000009',
-                'unitkerja'           => 'MAINTENANCE SERVICE AREA',
+                'unitkerja'           => 'RISK MANAGEMENT & QHSE',
             ],
             [
                 'id'             => 10,
                 'code'             => 'UNT-000010',
-                'unitkerja'           => 'CORPORATE PLANNING,FINANCE, TAX & ACCOUNTING',
+                'unitkerja'           => 'HUMAN CAPITAL & GENERAL AFFAIR',
             ],
             [
                 'id'             => 11,
                 'code'             => 'UNT-000011',
-                'unitkerja'           => 'RISK MANAGEMENT & QHSE',
+                'unitkerja'           => 'PROCUREMENT',
             ],
             [
                 'id'             => 12,
                 'code'             => 'UNT-000012',
-                'unitkerja'           => 'HUMAN CAPITAL & GENERAL AFFAIR',
+                'unitkerja'           => 'PROCUREMENT',
             ],
             [
                 'id'             => 13,
                 'code'             => 'UNT-000013',
-                'unitkerja'           => 'PROCUREMENT',
+                'unitkerja'           => 'DIREKTUR',
             ],
         ]
         );

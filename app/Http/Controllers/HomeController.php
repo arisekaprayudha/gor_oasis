@@ -21,7 +21,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -31,11 +31,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $index = Index::all();
-        $arsip = Arsip::all();
-        $unitkerja = UnitKerja::all();
-        $klasifikasi = Klasifikasi::all();
-        $data_unitkerja = Arsip::where('unitkerja_id', Auth::user()->unitkerja_id)->get();
-        return view('arsip.index',compact('klasifikasi','index','arsip','unitkerja','data_unitkerja'));
+        $unitkerja = UnitKerja::All();
+        $dataunitkerja = [];
+        foreach($unitkerja as $item){
+            $dataunitkerja[] = $item->unitkerja;
+        }
+        $total = UnitKerja::All();
+        //dd($dataunitkerja);
+        return view('dashboard',compact('dataunitkerja'));
     }
 }

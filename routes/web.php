@@ -35,7 +35,7 @@ use Illuminate\Support\Facades\Auth;
 
 //Route::view('/','authentification.loginn');
 
-Route::view('/','dashboard');
+// Route::view('/','dashboard');
 
 Route::get('/ajaxRequest', [RequestController::class, 'ajaxRequestPost'])->name('ajaxRequestPost');
 
@@ -44,8 +44,8 @@ Route::get('/ajaxRequest', [RequestController::class, 'ajaxRequestPost'])->name(
 //detail pengajuan peminjaman di user
 Route::get('/peminjaman/{id}', [RequestController::class, 'create']);
 
-//home page tampilan awal
-// Route::get('/dashboard',[HomeController::class,'index'])->name('home');
+// home page tampilan awal
+Route::get('/',[HomeController::class,'index'])->name('home');
 
 Route::get('/dashboard', [RequestController::class,'index']);
 
