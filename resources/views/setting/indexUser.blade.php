@@ -41,23 +41,16 @@
         <thead>
             <tr>
                 <th class="text-center">No</th>
-                <th>NIP</th>
                 <th>Name User</th>
-                <th>Unit Kerja</th>
                 <th class="text-center">Action</th>
             </tr> 
         </thead>
         <tbody>
             @foreach ($user as $item)
             <tr>
-                {{-- <td class="text-center">{{ $loop->iteration }}</td>
-                <td>{{ $item->nim }}</td>
-                <td>{{ $item->name }}</td>
-                <td>{{ $item->role->nameRole}}</td> --}}
                 <td class="text-center">{{ $loop->iteration }}</td>
-                <td>{{ $item->nip }}</td>
                 <td>{{ $item->name }}</td>
-                <td>{{ $item->unitkerja->unitkerja }}</td>
+                <td></td>
                 {{-- <td>{{ $item->role }}</td> --}}
                 <td class="text-center" width="200px">
                     <a href="{{url('/user/'.$item->id)}}" class="btn btn-sm btn-success" >
@@ -108,25 +101,6 @@
                     </span>
                 @endif
             </div>
-            <div class="form-group">
-                <label for="name">NIP :</label>
-                <input type="text" name="nip" class="form-control" placeholder="NIP">
-                @if ($errors->has('nip'))
-                <span class="help-block">
-                <strong>{{ $errors->first('nip') }}</strong>
-                    </span>
-                @endif
-            </div>   
-
-            {{-- <div class="form-group">
-                <label for="description">Description :</label>
-                <input type="text" name="description" class="form-control" id="description" placeholder="Description">
-                @if ($errors->has('description'))
-                <span class="help-block">
-                <strong>{{ $errors->first('description') }}</strong>
-                    </span>
-                @endif
-            </div>    --}}
 
         </div>
         <div class="modal-footer">

@@ -1,247 +1,172 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- validation modal -->
-  <meta name="_token" content="{{csrf_token()}}" />
-   <!-- add icon link -->
-  <link rel = "icon" type = "image/x-icon" href = "{{asset('style/dist/img/jmtm.jpg')}}">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AdminLTE 3 | Dashboard</title>
 
-  <title>@yield('title')</title>
+<link rel="stylesheet" href="{{asset('template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('template/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="{{asset('style/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{asset('style/bower_components/font-awesome/css/font-awesome.min.css')}}">
-  <!-- Ionicons -->
-  <!-- DataTables -->
-  <link rel="stylesheet" href="{{asset('style/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
-  <link rel="stylesheet" href="{{asset('style/bower_components/Ionicons/css/ionicons.min.css')}}">
-  <!-- daterange picker -->
-  <link rel="stylesheet" href="{{asset('style/bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
-  <!-- bootstrap datepicker -->
-  <link rel="stylesheet" href="{{asset('style/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
-  <!-- Bootstrap time Picker -->
-  <link rel="stylesheet" href="{{asset('style/plugins/timepicker/bootstrap-timepicker.min.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('style/dist/css/AdminLTE.min.css')}}">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-  folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="{{asset('style/dist/css/skins/_all-skins.min.css')}}">
-  <!-- filePond progress bar -->
-  <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
-  
-  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha256-OFRAJNoaD8L3Br5lglV7VyLRf0itmoBzWUoM+Sji4/8=" crossorigin="anonymous"></script> --}}
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-  
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  <style type="text/css">
-  .divider{
-    width:100%;
-    height:1px;
-    background: #BBB;
-    margin: 1rem 0;
-  }
-  </style>
-</head>
-<body class="sidebar-mini skin-yellow" style="height: auto; min-height: 100%;">
-{{-- <body class="hold-transition skin-blue sidebar-mini"> --}}
-<!-- Site wrapper -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
+<link rel="stylesheet" href="{{asset('template/plugins/fontawesome-free/css/all.min.css')}}">
+
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+<link rel="stylesheet" href="{{asset('template/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+
+<link rel="stylesheet" href="{{asset('template/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+
+<link rel="stylesheet" href="{{asset('template/plugins/jqvmap/jqvmap.min.css')}}">
+
+<link rel="stylesheet" href="{{asset('template/dist/css/adminlte.min.css?v=3.2.0')}}">
+
+<link rel="stylesheet" href="{{asset('template/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+
+<link rel="stylesheet" href="{{asset('template/plugins/daterangepicker/daterangepicker.css')}}">
+
+<link rel="stylesheet" href="{{asset('template/plugins/summernote/summernote-bs4.min.css')}}">
+<script nonce="49c82a05-c173-43f8-9268-87d16b78e50b">(function(w,d){!function(a,b,c,d){a[c]=a[c]||{};a[c].executed=[];a.zaraz={deferred:[],listeners:[]};a.zaraz.q=[];a.zaraz._f=function(e){return async function(){var f=Array.prototype.slice.call(arguments);a.zaraz.q.push({m:e,a:f})}};for(const g of["track","set","debug"])a.zaraz[g]=a.zaraz._f(g);a.zaraz.init=()=>{var h=b.getElementsByTagName(d)[0],i=b.createElement(d),j=b.getElementsByTagName("title")[0];j&&(a[c].t=b.getElementsByTagName("title")[0].text);a[c].x=Math.random();a[c].w=a.screen.width;a[c].h=a.screen.height;a[c].j=a.innerHeight;a[c].e=a.innerWidth;a[c].l=a.location.href;a[c].r=b.referrer;a[c].k=a.screen.colorDepth;a[c].n=b.characterSet;a[c].o=(new Date).getTimezoneOffset();if(a.dataLayer)for(const n of Object.entries(Object.entries(dataLayer).reduce(((o,p)=>({...o[1],...p[1]})),{})))zaraz.set(n[0],n[1],{scope:"page"});a[c].q=[];for(;a.zaraz.q.length;){const q=a.zaraz.q.shift();a[c].q.push(q)}i.defer=!0;for(const r of[localStorage,sessionStorage])Object.keys(r||{}).filter((t=>t.startsWith("_zaraz_"))).forEach((s=>{try{a[c]["z_"+s.slice(7)]=JSON.parse(r.getItem(s))}catch{a[c]["z_"+s.slice(7)]=r.getItem(s)}}));i.referrerPolicy="origin";i.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(a[c])));h.parentNode.insertBefore(i,h)};["complete","interactive"].includes(b.readyState)?zaraz.init():a.addEventListener("DOMContentLoaded",zaraz.init)}(w,d,"zarazData","script");})(window,document);</script></head>
+<body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="#" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>JMTM</b></span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Arsip </b>JMTM</span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{asset('style/dist/img/default-user.jpg')}}" class="user-image" alt="User Image">
-              <span class="hidden-xs">{{ Auth::user()->name }}</span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <img src="{{asset('style/dist/img/default-user.jpg')}}" class="img-circle" alt="User Image">
-
-                <p>
-                  {{ Auth::user()->name }} - {{ Auth::user()->nip }}
-                  {{-- <small>Member since Nov. 2012</small> --}}
-                </p>
-                <p>
-                  {{ Auth::user()->unitkerja->unitkerja }}
-                  {{-- <small>Member since Nov. 2012</small> --}}
-                </p>
-              </li>
-              <!-- Menu Body -->
-              {{-- <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li> --}}
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  {{-- <a href="#" class="btn btn-default btn-flat">Profile</a> --}}
-                </div>
-                <div class="pull-right">
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                    <button type="submit" class="btn btn-default btn-flat">Log out</a>
-                  </form>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-
-  <!-- =============================================== -->
-
-  <!-- Left side column. contains the sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-     
-    @include('layout.navbar')
-
-    </section>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- =============================================== -->
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <section class="content-header">
-    <!-- Content Header (Page header) -->
-    <h1>@yield('title')</h1>
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-      @yield('content')
-    </section>
-    <!-- /.content -->
-
-  </div>
-  <!-- /.content-wrapper -->
-
-  <footer class="main-footer">
-    <strong>© 2022 PT Jasamarga Tollroad Maintenance | All rights reserved</strong>
-  </footer>
-
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
+<div class="preloader flex-column justify-content-center align-items-center">
+<img class="animation__shake" src="{{asset('template/dist/img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
 </div>
-<!-- ./wrapper -->
 
-<script src="https://cdn.ckeditor.com/ckeditor5/31.0.0/classic/ckeditor.js"></script>
-<!-- filePond progress bar -->
-<script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
-<!-- jQuery 3 -->
-<script src="{{asset('style/bower_components/jquery/dist/jquery.min.js')}}"></script>
-{{-- <script src="{{asset('style/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script> --}}
-@yield('scripts') 
-<!-- Bootstrap 3.3.7 -->
-<script src="{{asset('style/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-<!-- DataTables -->
-<script src="{{asset('style/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('style/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-<!-- date-range-picker -->
-<script src="{{asset('style/bower_components/moment/min/moment.min.js')}}"></script>
-<script src="{{asset('style/bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
-<!-- bootstrap datepicker -->
-<script src="{{asset('style/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
-<!-- bootstrap time picker -->
-<script src="{{asset('style/plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
-<!-- SlimScroll -->
-<script src="{{asset('style/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
-<!-- FastClick -->
-<script src="{{asset('style/bower_components/fastclick/lib/fastclick.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{asset('style/dist/js/adminlte.min.js')}}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{asset('style/dist/js/demo.js')}}"></script>
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+</li>
+</ul>
+
+<ul class="navbar-nav ml-auto">
+
+</ul>
+</nav>
+
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+<a href="index3.html" class="brand-link">
+{{--<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">--}}
+<span class="brand-text font-weight-light">OASIS</span>
+</a>
+
+<div class="sidebar">
+
+<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+<div class="image">
+<img src="{{asset('style/dist/img/default-user.jpg')}}" class="img-circle elevation-2" alt="User Image">
+</div>
+<div class="info">
+<a href="#" class="d-block">{{ Auth::user()->name }}</a>
+</div>
+</div>
+
+<nav class="mt-2">
+    @include('layout.navbar')
+</nav>
+
+</div>
+
+</aside>
+
+<div class="content-wrapper">
+
+<div class="content-header">
+<div class="container-fluid">
+<div class="row mb-2">
+
+</div>
+</div>
+</div>
+
+
+<section class="content">
+<div class="container-fluid">
+</div>
+@yield('content')
+</div>
+</section>
+
+</div>
+
+<footer class="main-footer">
+  <strong>© 2024 Aris Eka | All rights reserved</strong>
+</div>
+</footer>
+
+<aside class="control-sidebar control-sidebar-dark">
+
+</aside>
+
+</div>
+
+
+<script src="{{asset('template/plugins/jquery/jquery.min.js')}}"></script>
+
+<script src="{{asset('template/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+
 <script>
-  $('#table').DataTable();
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
-  })
-  //Timepicker
-  $('.timepicker').timepicker({
-      showInputs: false
-    })
-    //Datemask dd/mm/yyyy
-    //Datemask2 mm/dd/yyyy
-    //Money Euro
-
-
-    //Date range picker
-    $('#reservation').daterangepicker()
-    //Date range picker with time picker
-    $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, locale: { format: 'MM/DD/YYYY hh:mm A' }})
-    //Date range as a button
-    $('#daterange-btn').daterangepicker(
-      {
-        ranges   : {
-          'Today'       : [moment(), moment()],
-          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
-        startDate: moment().subtract(29, 'days'),
-        endDate  : moment()
-      },
-      function (start, end) {
-        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-      }
-    )
-
-    //Date picker
-    $('#datepicker').datepicker({
-      autoclose: true
-    })
+  $.widget.bridge('uibutton', $.ui.button)
 </script>
+
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+
+<script src="{{asset('template/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+<script src="{{asset('template/plugins/chart.js/Chart.min.js')}}"></script>
+
+<script src="{{asset('template/plugins/sparklines/sparkline.js')}}"></script>
+
+<script src="{{asset('template/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
+<script src="{{asset('template/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
+
+<script src="{{asset('template/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
+
+<script src="{{asset('template/plugins/moment/moment.min.js')}}"></script>
+<script src="{{asset('template/plugins/daterangepicker/daterangepicker.js')}}"></script>
+
+<script src="{{asset('template/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+
+<script src="{{asset('template/plugins/summernote/summernote-bs4.min.js')}}"></script>
+
+<script src="{{asset('template/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+
+<script src="{{asset('template/dist/js/adminlte.js?v=3.2.0')}}"></script>
+
+<script src="{{asset('template/dist/js/demo.js')}}"></script>
+
+
+<script src="{{asset('template/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('template/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{asset('template/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('template/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{asset('template/dist/js/pages/dashboard.js')}}"></script>
+<script src="{{asset('template/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{asset('template/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+<script src="{{asset('template/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 </body>
 </html>

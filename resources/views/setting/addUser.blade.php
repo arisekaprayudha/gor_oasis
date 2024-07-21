@@ -32,17 +32,6 @@
                 @endif
                 </div>
             </div>   
-            
-            <div class="form-group row mt-2 {{$errors->has('nip') ? ' has-error' : ' '}}">
-                <label class="col-sm-3 control-label">NIP :</label>
-                <div class="col-sm-8">
-                    <input type="text" name="nip" class="form-control" id="nip" placeholder="NIP">
-                @if ($errors->has('nip'))
-                <span class="help-block">
-                <strong>{{ $errors->first('nip') }}</strong>
-                @endif
-                </div>
-            </div>   
           
             <div class="pull-right">
             <div class="box-footer">

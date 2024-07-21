@@ -23,32 +23,21 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $table = 'hrmlmsusers';
+    protected $table = 'users';
     protected $fillable = [
         'name',
-        'nip',
-        //'email',
         'password',
     ];
 
     public function role(){
-        // return $this->belongsToMany(Role::class);
-        return $this->belongsToMany('App\Models\Role');
-        //return $this->hasManyThrough('App\Models\Role');
-        // return $this->hasMany('App\Models\Role');
+        //return $this->belongsToMany('App\Models\Role');
+        return $this->belongsToMany(Role::class);
     }
 
     public function role_user(){
         return $this->hasMany(RoleUser::class);
     }
 
-    public function unitkerja(){
-        return $this->belongsTo('App\Models\UnitKerja');
-    }
-
-    public function pengajuaan(){
-        return $this->belongsToMany('App\Models\Pengajuaan');
-    }
 
   
 

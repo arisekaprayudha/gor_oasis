@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
-use App\Models\UnitKerja;
+use App\Models\RoleUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -18,11 +18,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        // return User::with(['role'])->get();
         $user = User::all();
-        $unitkerja = UnitKerja::all();
-
-        return view('setting.indexUser', compact('user','unitkerja'));
+        return view('user.index', compact('user'));
+        //return view('setting.indexUser', compact('user'));
     }
 
     /**
@@ -32,8 +30,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $unitkerja = UnitKerja::all();
-        return view('setting.addUser', compact('unitkerja'));
+        $role = Role::all();
+        return view('user.add',compact('role'));
     }
 
     /**
@@ -45,23 +43,16 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-        User::create([
-            'name' => $request['name'],
-            'nip' => $request['nip'],
-            //'email' => $data['email'],
-            //'password' => Hash::make($data['password']),
-            'password' => Hash::make('hris9090')
+        $user = new User();
+        $user->name = $request->name;
+        $user->password = Hash::make('12345678');
+        $user->save();
+
+        RoleUser::create([
+            'user_id' => $user->id,
+            'role_id' => 1,
         ]);
 
-        // User::insert([
-        //     'name' =>$request->get('name'),
-        //     'nip' =>$request->get('nip')
-        // ])
-
-        // $user = User::create($request->all());
-        // $user->roles()->sync($request->input('roles', []));
-
-        // return redirect()->route('admin.users.index');
         return redirect('/user')->with('succes','success add data');
     }
 
@@ -73,9 +64,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $unitkerja = UnitKerja::all();
         $user = User::find($id);
-        return view('setting.viewUser', compact('user','unitkerja'));
+        return view('user.index',compact('bobot'));
+        //return view('setting.viewUser', compact('user'));
     }
 
     /**
@@ -86,10 +77,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $unitkerja = UnitKerja::all();
         $user = User::findorfail($id);
         //dd($category);
-        return view ('setting.editUser',compact('user','unitkerja'));
+        return view ('setting.editUser',compact('user'));
         
     }
 
@@ -102,28 +92,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $user = User::findorfail($id);
-        // $request->user()->fill([
-        //     'password' => Hash::make($request->password)
-        // ])->save();
 
-
-        // user::create([
-        //     'name' => $request->name,
-        //     'nip' => $request->nip,
-        //     'password' => Hash::make($request->password)
-        // ]);
-        // $newpassword =  Hash::make($request->password);
-        // $user->name = $request->name;
-        // $user->nip = $request->nip;
-        // $user->password = $newpassword;
-        // $user->save;
-        $request->user()->fill([
-            'name' => $request->name,
-            'nip' => $request->nip,
-            'password' => Hash::make($request->password)
-        ])->save();
+        $user = User::find($id);
+        $user->name = $request->name;
+        if($request->password != $user->password){
+        $user->password =  Hash::make($request->password);
+        }
+        $user->save();
 
         //return back();
         return redirect('/user')->with('succes','success edit data');

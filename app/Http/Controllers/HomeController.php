@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\Arsip;
-use App\Models\UnitKerja;
-use App\Models\Klasifikasi;
-use App\Models\Index;
+use App\Models\Bobot;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -31,13 +29,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $unitkerja = UnitKerja::All();
-        $dataunitkerja = [];
-        foreach($unitkerja as $item){
-            $dataunitkerja[] = $item->unitkerja;
-        }
-        $total = UnitKerja::All();
-        //dd($dataunitkerja);
-        return view('dashboard',compact('dataunitkerja'));
+        $total_bobot = Bobot::count();
+        $total_testing = User::count();
+        return view('dashboard',compact('total_testing','total_bobot'));
     }
 }

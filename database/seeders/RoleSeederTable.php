@@ -10,18 +10,22 @@ class RoleSeederTable extends Seeder
     public function run()
     {
 
-        DB::table('hrmlmsroles')->insert([
+        DB::table('roles')->insert([
             [
                 'id'             => 1,
                 'nameRole'           => 'Admin',
             ],
             [
                 'id'             => 2,
-                'nameRole'           => 'User',
+                'nameRole'           => 'OrangTua',
             ],
             [
                 'id'             => 3,
-                'nameRole'           => 'Direksi',
+                'nameRole'           => 'Atlet',
+            ],
+            [
+                'id'             => 4,
+                'nameRole'           => 'Pelatih',
             ],
         ]
         );

@@ -13,7 +13,7 @@ class CreateAlertsTable extends Migration
      */
     public function up()
     {
-        Schema::create('hrmlmsalerts', function (Blueprint $table) {
+        Schema::create('alerts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('label');
             $table->string('message');

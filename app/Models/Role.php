@@ -9,7 +9,7 @@ class Role extends Model
 {
     use HasFactory;
     protected $fillable = ['nameRole'];
-    protected $table = 'hrmlmsroles';
+    protected $table = 'roles';
     public function user(){
         // return $this->belongsTo(User::class);
         return $this->belongsToMany('App\Models\User');

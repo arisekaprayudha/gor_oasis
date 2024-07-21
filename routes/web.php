@@ -1,23 +1,15 @@
 <?php
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\RequestController;
-use App\Http\Controllers\ApprovalController;
-use App\Http\Controllers\DetailArsipController;
-use App\Http\Controllers\ArsipController;
-use App\Http\Controllers\IndexController;
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\KlasifikasiController;
-use App\Http\Controllers\UnitKerjaController;
-
+use App\Http\Controllers\BobotController;
+use App\Http\Controllers\NilaiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-
-use App\Http\Controllers\PermissionController;
-
-use App\Http\Controllers\RoleController;
-
-use App\Http\Controllers\UserController;
-use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,141 +23,81 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
-//Route::view('/', 'welcome');
-
-//Route::view('/','authentification.loginn');
-
-// Route::view('/','dashboard');
-
-Route::get('/ajaxRequest', [RequestController::class, 'ajaxRequestPost'])->name('ajaxRequestPost');
-
-// Route::post('/ajaxRequest/{file_id}', [RequestController::class, 'ajaxRequestPost'])->name('ajaxRequest.post');
-
-//detail pengajuan peminjaman di user
-Route::get('/peminjaman/{id}', [RequestController::class, 'create']);
-
 // home page tampilan awal
-Route::get('/',[HomeController::class,'index'])->name('home');
-
-Route::get('/dashboard', [RequestController::class,'index']);
-
-//update approval arsip
-Route::put('/pengajuaan/{id}', [RequestController::class, 'update']);
-//store approval arsip
-//Route::post('/arsip/{id}/store', [RequestController::class, 'store']);
-Route::post('/arsip/store', [RequestController::class, 'store']);
-
-
-//detail pengajuan untuk user
-//Route::get('/registsubmission/{id}', [RegistController::class,'registShow']);
-Route::get('/detailrequest/{id}', [RequestController::class,'show']);
-
-// Route::get('/search', [SearchController::class, 'create']);
-
-Route::get('/search', [SearchController::class, 'store']);
-
-    Route::get('/arsip', [ArsipController::class,'index']);
-    Route::post('/arsip', [ArsipController::class,'store']);
-    Route::get('/arsip/create', [ArsipController::class, 'create']);
-    Route::get('/arsip/{id}', [ArsipController::class, 'show']);
-    Route::get('/arsip/{id}/edit', [ArsipController::class,'edit']);
-    Route::put('/arsip/{id}', [ArsipController::class, 'update']);
-    Route::delete('/arsip/{id}', [ArsipController::class, 'destroy']);
-    Route::get('/exportArsip',[ArsipController::class,'arsipExport']);
-    Route::post('/importArsip',[ArsipController::class,'arsipImport'])->name('arsip.import');
-    Route::get('/templateArsip',[ArsipController::class,'templateArsip'])->name('arsip.template');
-    Route::get('/templateArsipFile',[ArsipController::class,'templateArsipFile'])->name('arsipfile.template');
-    //belum selesai
-    Route::post('/importArsipFile',[ArsipController::class,'arsipImportFile'])->name('arsipfile.import');
-    //addfilearsip
-    Route::get('arsip/file/{id}/create', [DetailArsipController::class,'create'])->name('detailarsip.create');
-    //delete file
-    Route::delete('arsip/file/{id}', [DetailArsipController::class,'destroy']);
-    //store file
-    Route::post('arsip/file/{id}', [DetailArsipController::class, 'store']);
-    //edit file
-    Route::get('arsip/file/{id}/{arsip_id}/edit', [DetailArsipController::class,'edit']);
-    //update file
-    Route::put('arsip/file/{id}/{arsip_id}', [DetailArsipController::class, 'update']);
-
-    //download file
-    Route::get('/arsip/download/{file}', [ArsipController::class, 'download'])->name('arsip-download');
-
-
-//change password
-Route::put('/user/changePassword', [UserController::class, 'updatePassword'])->name('user.changePassword');
-
+Route::view('/','authentification.loginn');
+//Route::get('/',[HomeController::class,'index'])->name('home');
 
 Auth::routes();
 
 //hakakses admin
 Route::middleware(['auth', 'role:Admin'])->group(function () {
-    
 
-    // Roles
-    //Route::delete('roles/destroy', 'RolesController@massDestroy')->name('roles.massDestroy');
-    Route::resource('/role', RoleController::class);
-    
-
-    // Permissions
-    //Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
-    Route::resource('/permission', PermissionController::class);
-
-    // Users
-    //Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
+    //change password
+    Route::put('/user/changePassword', [UserController::class, 'updatePassword'])->name('user.changePassword');
     Route::get('/user', [UserController::class, 'index']);
-
     Route::get('/user/create', [UserController::class, 'create']);
-
     Route::post('/user', [UserController::class,'store']);
-
     Route::get('/user/{id}', [UserController::class,'show']);
-
     Route::delete('/user/{id}', [UserController::class, 'destroy']);
-
     Route::get('/user/{id}/edit', [UserController::class, 'edit']);
-
     Route::put('/user/{id}', [UserController::class, 'update']);
+    Route::get('/exportBobot',[BobotController::class,'bobotExport']);
+    Route::post('/importBobot',[BobotController::class,'bobotImport'])->name('bobot.import');
+    Route::get('/templateBobot',[BobotController::class,'templateBobot'])->name('bobot.template');
+    Route::get('/dashboard', [HomeController::class,'index']);
 
+    //data jadwal
+    Route::get('/jadwal', [JadwalController::class,'index']);
+    Route::post('/jadwal', [JadwalController::class,'store']);
+    Route::get('/jadwal/create', [JadwalController::class, 'create']);
+    Route::get('/jadwal/{id}', [JadwalController::class, 'show']);
+    Route::get('/jadwal/{id}/edit', [JadwalController::class,'edit']);
+    Route::put('/jadwal/{id}', [JadwalController::class, 'update']);
+    Route::delete('/jadwal/{id}', [JadwalController::class, 'destroy']);
+    Route::get('/exportJadwal',[JadwalController::class,'jadwalExport']);
+    Route::post('/importJadwal',[JadwalController::class,'jadwalImport'])->name('jadwal.import');
+    Route::get('/templateJadwal',[JadwalController::class,'templateJadwal'])->name('jadwal.template');
+
+    //data group
+    Route::get('/group', [GroupController::class,'index']);
+    Route::post('/group', [GroupController::class,'store']);
+    Route::get('/group/create', [GroupController::class, 'create']);
+    Route::get('/group/{id}', [GroupController::class, 'show']);
+    Route::get('/group/{id}/edit', [GroupController::class,'edit']);
+    Route::put('/group/{id}', [GroupController::class, 'update']);
+    Route::delete('/group/{id}', [GroupController::class, 'destroy']);
+    Route::get('/exportGroup',[GroupController::class,'groupExport']);
+    Route::post('/importGroup',[GroupController::class,'groupImport'])->name('group.import');
+    Route::get('/templateGroup',[GroupController::class,'templateGroup'])->name('group.template');
     
-    Route::get('/index', [IndexController::class,'index']);
-    Route::post('/index', [IndexController::class,'store']);
-    Route::get('/index/create', [IndexController::class, 'create']);
-    Route::get('/index/{id}', [IndexController::class, 'show']);
-    Route::get('/index/{id}/edit', [IndexController::class,'edit']);
-    Route::put('/index/{id}', [IndexController::class, 'update']);
-    Route::delete('/index/{id}', [IndexController::class, 'destroy']);
-    Route::get('/exportIndex',[IndexController::class,'indexExport']);
-    Route::post('/importIndex',[IndexController::class,'indexImport'])->name('index.import');
-    Route::get('/templateIndex',[IndexController::class,'templateIndex'])->name('index.template');
-
+    
+    //hasil prediksi
     Route::get('/klasifikasi', [KlasifikasiController::class,'index']);
-    Route::post('/klasifikasi', [KlasifikasiController::class,'store']);
-    Route::get('/klasifikasi/create', [KlasifikasiController::class, 'create']);
-    Route::get('/klasifikasi/{id}', [KlasifikasiController::class, 'show']);
-    Route::get('/klasifikasi/{id}/edit', [KlasifikasiController::class,'edit']);
-    Route::put('/klasifikasi/{id}', [KlasifikasiController::class, 'update']);
-    Route::delete('/klasifikasi/{id}', [KlasifikasiController::class, 'destroy']);
-    Route::get('/exportKlasifikasi',[KlasifikasiController::class,'klasifikasiExport']);
-    Route::post('/importKlasifikasi',[KlasifikasiController::class,'klasifikasiImport'])->name('klasifikasi.import');
-    Route::get('/templateKlasifikasi',[KlasifikasiController::class,'templateKlasifikasi'])->name('klasifikasi.template');
 
-    Route::get('/unitkerja', [UnitKerjaController::class,'index']);
-    Route::post('/unitkerja', [UnitKerjaController::class,'store']);
-    Route::get('/unitkerja/create', [UnitKerjaController::class, 'create']);
-    Route::get('/unitkerja/{id}', [UnitKerjaController::class, 'show']);
-    Route::get('/unitkerja/{id}/edit', [UnitKerjaController::class,'edit']);
-    Route::put('/unitkerja/{id}', [UnitKerjaController::class, 'update']);
-    Route::delete('/unitkerja/{id}', [UnitKerjaController::class, 'destroy']);
-    Route::get('/exportUnitkerja',[UnitKerjaController::class,'unitkerjaExport']);
-    Route::post('/importUnitkerja',[UnitKerjaController::class,'unitkerjaImport'])->name('unitkerja.import');
-    Route::get('/templateUnitkerja',[UnitKerjaController::class,'templateUnitkerja'])->name('unitkerja.template');
+    //data kiteria bobot
+    Route::get('/bobot', [BobotController::class,'index']);
+    Route::post('/bobot', [BobotController::class,'store']);
+    Route::get('/bobot/create', [BobotController::class, 'create']);
+    Route::get('/bobot/{id}', [BobotController::class, 'show']);
+    Route::get('/bobot/{id}/edit', [BobotController::class,'edit']);
+    Route::put('/bobot/{id}', [BobotController::class, 'update']);
+    Route::delete('/bobot/{id}', [BobotController::class, 'destroy']);
+    Route::get('/exportBobot',[BobotController::class,'bobotExport']);
+    Route::post('/importBobot',[BobotController::class,'bobotImport'])->name('bobot.import');
+    Route::get('/templateBobot',[BobotController::class,'templateBobot'])->name('bobot.template');
+   
 
-    //dropdowngetindex from unitkerja
-    Route::post('api/fetch-index', [ArsipController::class, 'getIndex']);
-
-    //detail pengajuan untuk admin approver
-    Route::get('/requestsubmission/{request_id}', [RequestController::class,'edit']);
+    //data nilai
+    Route::get('/nilai', [NilaiController::class,'index']);
+    Route::post('/nilai', [NilaiController::class,'store']);
+    Route::get('/nilai/create', [NilaiController::class, 'create']);
+    Route::get('/nilai/{id}', [NilaiController::class, 'show']);
+    Route::get('/nilai/{id}/edit', [NilaiController::class,'edit']);
+    Route::put('/nilai/{id}', [NilaiController::class, 'update']);
+    Route::delete('/nilai/{id}', [NilaiController::class, 'destroy']);
+    Route::get('/exportNilai',[NilaiController::class,'bobotExport']);
+    Route::post('/importNilai',[NilaiController::class,'bobotImport'])->name('nilai.import');
+    Route::get('/templateNilai',[NilaiController::class,'templateBobot'])->name('nilai.template');
    
     });
 

@@ -13,7 +13,7 @@ class CreatePasswordResetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('hrmlmspassword_resets', function (Blueprint $table) {
+        Schema::create('password_resets', function (Blueprint $table) {
             // $table->string('email')->index();
             $table->string('nip')->index();
             $table->string('token');
@@ -28,6 +28,6 @@ class CreatePasswordResetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hrmlmspassword_resets');
+        Schema::dropIfExists('password_resets');
     }
 }

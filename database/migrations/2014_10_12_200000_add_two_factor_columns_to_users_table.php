@@ -13,7 +13,7 @@ class AddTwoFactorColumnsToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('hrmlmsusers', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->text('two_factor_secret')
                     ->after('password')
                     ->nullable();

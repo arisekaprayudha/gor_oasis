@@ -12,23 +12,9 @@
     <div class="box-body form-horizontal">
 
         <div class="form-group row mt-2">
-            <label class="col-sm-3 control-label">NIP :</label>
-            <div class="col-sm-8">
-                <input class="form-control select2" type="text" value="{{$user->nip}}" disabled>
-            </div>
-        </div>
-
-        <div class="form-group row mt-2">
             <label class="col-sm-3 control-label">Name :</label>
             <div class="col-sm-8">
                 <input class="form-control select2" type="text" value="{{$user->name}}" disabled>
-            </div>
-        </div>
-
-        <div class="form-group row mt-2">
-            <label class="col-sm-3 control-label">Unit Kerja :</label>
-            <div class="col-sm-8">
-                <input class="form-control select2" type="text" value="{{$user->unitkerja->unitkerja}}" disabled>
             </div>
         </div>
 

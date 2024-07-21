@@ -22,9 +22,9 @@ class KlasifikasiController extends Controller
      */
     public function index()
     {
-        $klasifikasi = Klasifikasi::all();
+        //$klasifikasi = Klasifikasi::all();
         //dd($unitkerja);
-        return view('klasifikasi.index',compact('klasifikasi'));
+        return view('klasifikasi.index');
     }
 
     /**
